@@ -1,0 +1,24 @@
+name: SimplePronouns
+version: '${project.version}'
+main: simplexity.simplepronouns.SimplePronouns
+api-version: '1.20'
+commands:
+  pronouns:
+    permission: pronouns
+    description: Base command for plugin functionality
+  spreload:
+    permission: pronouns.reload
+    description: Reloads the plugin
+permissions:
+  pronouns.set:
+    description: Allows the user to set their pronouns
+    default: op
+  pronouns.remove:
+    description: Allows the user to remove their pronouns
+    default: op
+  pronouns.other.set:
+    description: Allows the user to set other users' pronouns
+    default: op
+  pronouns.reload:
+    description: Allows the user to reload the plugin
+    default: op

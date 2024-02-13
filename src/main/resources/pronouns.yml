@@ -1,0 +1,43 @@
+pronouns:
+  he:
+    subjective: "he"
+    objective: "him"
+    possessive: "his"
+    possessive-adj: "his"
+    reflexive: "himself"
+  she:
+    subjective: "she"
+    objective: "her"
+    possessive: "her"
+    possessive-adj: "hers"
+    reflexive: "herself"
+  they:
+    subjective: "they"
+    objective: "them"
+    possessive: "their"
+    possessive-adj: "theirs"
+    reflexive: "themself"
+  they-plural:
+    subjective: "they"
+    objective: "them"
+    possessive: "their"
+    possessive-adj: "theirs"
+    reflexive: "themselves"
+  you:
+    subjective: "you"
+    objective: "you"
+    possessive: "your"
+    possessive-adj: "yours"
+    reflexive: "yourself"
+  me:
+    subjective: "I"
+    objective: "me"
+    possessive: "my"
+    possessive-adj: "mine"
+    reflexive: "myself"
+  we:
+    subjective: "we"
+    objective: "us"
+    possessive: "our"
+    possessive-adj: "ours"
+    reflexive: "ourselves"

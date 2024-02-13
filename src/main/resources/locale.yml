@@ -1,0 +1,16 @@
+#player feedback
+pronouns:
+  set: "Pronouns have been set."
+  clear: "Your pronouns have been cleared."
+  get: "Your current pronouns are:"
+  set-other: "<name>'s pronouns have been set."
+  clear-other: "<name>'s pronouns have been cleared"
+  get-other: "<name>'s current set pronouns are:"
+example-sentence: "<gray>A sentence with these pronouns looks like this: <u><green><sub></green></u> promised <u><green><ref></green></u> that nobody would use <u><green><pos></green></u> own tricks against <u><green><obj></green></u> again. The final laugh would be <u><green><posadj></green></u>"
+errors:
+  must-be-player: "<red>Sorry, you must be a player to run this command"
+  no-permission: "<red>You do not have permission to run this command"
+  syntax-error: "<red>Command not found, please check your spelling and run the command again"
+  not-enough-arguments: "<red>Not enough arguments provided"
+general-feedback:
+  reloaded: "<gold>SimplePronouns Reloaded"
