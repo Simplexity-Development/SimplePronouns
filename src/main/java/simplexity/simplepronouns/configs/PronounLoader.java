@@ -48,6 +48,8 @@ public class PronounLoader {
             logger.warning("No pronouns found in config file.");
             return;
         }
+        PronounManager.pronouns.clear();
+        PronounManager.pronounLabels.clear();
         Set<String> keys = pronounSection.getKeys(false);
         for (String pronounKey : keys) {
             if (pronounKey == null) continue;
@@ -61,6 +63,7 @@ public class PronounLoader {
                     configSection.getString("possessive"),
                     configSection.getString("possessive-adj"),
                     configSection.getString("reflexive")));
+            PronounManager.pronounLabels.add(pronounKey);
             logger.info("===============================================");
             logger.info("Loaded pronoun " + pronounKey);
             logger.info("Subjective: " + configSection.getString("subjective"));

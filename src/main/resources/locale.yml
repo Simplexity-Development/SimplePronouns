@@ -1,16 +1,18 @@
 #player feedback
 pronouns:
-  set: "Pronouns have been set."
+  set: "<white><bold>[</bold><green>Success</green><bold>]</bold></white> <gray>Your pronouns have been set to <yellow><label></yellow>.</gray>"
   clear: "Your pronouns have been cleared."
   get: "Your current pronouns are:"
   set-other: "<name>'s pronouns have been set."
   clear-other: "<name>'s pronouns have been cleared"
   get-other: "<name>'s current set pronouns are:"
-example-sentence: "<gray>A sentence with these pronouns looks like this: <u><green><sub></green></u> promised <u><green><ref></green></u> that nobody would use <u><green><pos></green></u> own tricks against <u><green><obj></green></u> again. The final laugh would be <u><green><posadj></green></u>"
+example-sentence: "<gray>A sentence with these pronouns looks like this: <u><yellow><sub></yellow></u> promised <u><yellow><ref></yellow></u> that nobody would use <u><yellow><pos></yellow></u> own tricks against <u><yellow><obj></yellow></u> again. The final laugh would be <u><yellow><posadj></yellow></u>.</gray>"
 errors:
-  must-be-player: "<red>Sorry, you must be a player to run this command"
-  no-permission: "<red>You do not have permission to run this command"
-  syntax-error: "<red>Command not found, please check your spelling and run the command again"
-  not-enough-arguments: "<red>Not enough arguments provided"
-general-feedback:
-  reloaded: "<gold>SimplePronouns Reloaded"
+  must-be-player: "<red>Sorry, you must be a player to run this command</red>"
+  no-permission: "<red>You do not have permission to run this command</red>"
+  syntax-error: "<red>Command not found, please check your spelling and run the command again</red>"
+  not-enough-arguments: "<red>Not enough arguments provided</red>"
+command-feedback:
+  reloaded: "<gold>SimplePronouns Reloaded</gold>"
+  list-header: "<aqua>The current configured pronouns are:</aqua>"
+  list-item: "\n<bold>[<green><label></green>]</bold>\n  - <yellow><sub></yellow>\n  - <yellow><ref></yellow>\n  - <yellow><obj></yellow>\n  - <yellow><pos></yellow>\n  - <yellow><posadj></yellow>"

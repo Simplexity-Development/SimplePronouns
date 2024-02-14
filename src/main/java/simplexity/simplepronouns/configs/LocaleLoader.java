@@ -1,16 +1,12 @@
 package simplexity.simplepronouns.configs;
 
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import simplexity.simplepronouns.Pronoun;
-import simplexity.simplepronouns.PronounManager;
 import simplexity.simplepronouns.SimplePronouns;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Set;
 import java.util.logging.Logger;
 
 public class LocaleLoader {
@@ -24,7 +20,7 @@ public class LocaleLoader {
     private String pronounsSet, pronounsClear, pronounsGet, pronounsSetOther, pronounsClearOther, pronounsGetOther;
     private String exampleSentence;
     private String errorMustBePlayer, noPermission, syntaxError, notEnoughArguments;
-    private String reloaded;
+    private String commandReloaded, listHeader, listItem;
     
     private LocaleLoader() {
         if (!localeFile.exists()) {
@@ -58,7 +54,9 @@ public class LocaleLoader {
         noPermission = localeConfig.getString("errors.no-permission");
         syntaxError = localeConfig.getString("errors.syntax-error");
         notEnoughArguments = localeConfig.getString("errors.not-enough-arguments");
-        reloaded = localeConfig.getString("general-feedback.reloaded");
+        commandReloaded = localeConfig.getString("command-feedback.reloaded");
+        listHeader = localeConfig.getString("command-feedback.list-header");
+        listItem = localeConfig.getString("command-feedback.list-item");
     }
     
     public String getPronounsSet() {
@@ -105,7 +103,13 @@ public class LocaleLoader {
         return notEnoughArguments;
     }
     
-    public String getReloaded() {
-        return reloaded;
+    public String getCommandReloaded() {
+        return commandReloaded;
+    }
+    public String getListHeader() {
+        return listHeader;
+    }
+    public String getListItem() {
+        return listItem;
     }
 }

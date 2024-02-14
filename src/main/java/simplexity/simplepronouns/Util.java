@@ -11,9 +11,13 @@ public class Util {
     private static MiniMessage miniMessage = SimplePronouns.getMiniMessage();
     
     public static NamespacedKey pronounsKey = new NamespacedKey(SimplePronouns.getInstance(), "pronouns");
+    public static String pronounBasePerm = "pronouns";
     public static String pronounSetPerm = "pronouns.set";
     public static String pronounRemovePerm = "pronouns.remove";
     public static String pronounReloadPerm = "pronouns.reload";
+    public static String pronounListPerm = "pronouns.list";
+    public static String pronounInfoPerm = "pronouns.info";
+    public static String pronounOtherPerm = "pronouns.other";
     public static String pronounOtherSet = "pronouns.other.set";
     public static boolean checkIfPlayerAndPerms(CommandSender sender, String permission) {
         if (!(sender instanceof Player player)) {
@@ -29,22 +33,14 @@ public class Util {
         return true;
     }
     
-    public static Component parsePronouns(Player player, String string){
-        Pronoun pronoun = PronounManager.getSelectedPronoun(player);
-        return miniMessage.deserialize(string,
-                Placeholder.parsed("sub", pronoun.getSubjective()),
-                Placeholder.parsed("obj", pronoun.getObjective()),
-                Placeholder.parsed("pos", pronoun.getPossessive()),
-                Placeholder.parsed("posadj", pronoun.getPossessiveAdjective()),
-                Placeholder.parsed("ref", pronoun.getReflexive()));
-    }
     public static Component parsePronouns(String string,Pronoun pronoun){
         return miniMessage.deserialize(string,
                 Placeholder.parsed("sub", pronoun.getSubjective()),
                 Placeholder.parsed("obj", pronoun.getObjective()),
                 Placeholder.parsed("pos", pronoun.getPossessive()),
                 Placeholder.parsed("posadj", pronoun.getPossessiveAdjective()),
-                Placeholder.parsed("ref", pronoun.getReflexive()));
+                Placeholder.parsed("ref", pronoun.getReflexive()),
+                Placeholder.parsed("label", pronoun.getLabel()));
     }
 
 }

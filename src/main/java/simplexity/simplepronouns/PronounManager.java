@@ -4,11 +4,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 import simplexity.simplepronouns.configs.ConfigLoader;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PronounManager {
     
     public static HashMap<String, Pronoun> pronouns = new HashMap<>();
+    public static ArrayList<String> pronounLabels = new ArrayList<>();
     
     public static void setSelectedPronoun(Player player, Pronoun pronoun) {
         if (ConfigLoader.getInstance().isEnabled()) {
