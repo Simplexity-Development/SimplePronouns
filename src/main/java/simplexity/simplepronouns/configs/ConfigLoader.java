@@ -1,13 +1,12 @@
 package simplexity.simplepronouns.configs;
 
 import org.bukkit.configuration.file.FileConfiguration;
-import simplexity.simplepronouns.DatabaseManager;
 import simplexity.simplepronouns.SimplePronouns;
 
 public class ConfigLoader {
     
     private static ConfigLoader instance;
-    private boolean enabled;
+    private String saveType;
     private String ip;
     private String name;
     private String username;
@@ -23,19 +22,17 @@ public class ConfigLoader {
     
     public void loadConfig() {
         FileConfiguration config = SimplePronouns.getInstance().getConfig();
-        enabled = config.getBoolean("mysql.enabled");
+        saveType = config.getString("save-type");
         ip = config.getString("mysql.ip");
         name = config.getString("mysql.name");
         username = config.getString("mysql.username");
         password = config.getString("mysql.password");
-        if (enabled) {
-            DatabaseManager.createDatabase();
-        }
+        saveType = config.getString("save-type").toLowerCase();
         LocaleLoader.getInstance().loadLocale();
     }
     
-    public boolean isEnabled() {
-        return enabled;
+    public String getSaveType() {
+        return saveType;
     }
     
     public String getIp() {

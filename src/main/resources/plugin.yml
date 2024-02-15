@@ -22,3 +22,5 @@ permissions:
   pronouns.reload:
     description: Allows the user to reload the plugin
     default: op
+softdepend:
+- PlaceholderAPI

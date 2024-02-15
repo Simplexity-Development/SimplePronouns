@@ -4,14 +4,11 @@ package simplexity.simplepronouns.commands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import simplexity.simplepronouns.Pronoun;
-import simplexity.simplepronouns.PronounManager;
 import simplexity.simplepronouns.SimplePronouns;
-import simplexity.simplepronouns.Util;
 import simplexity.simplepronouns.commands.subcommands.SubCommand;
+import simplexity.simplepronouns.configs.LocaleLoader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,18 +24,16 @@ public class PronounCommand implements TabExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         if (args.length < 1) {
-            logger.info("/pronoun command sent with no arguments, returning");
+            sender.sendRichMessage(LocaleLoader.getInstance().getNotEnoughArguments());
             return false;
         }
         String subCommand = args[0];
         if (!subCommands.containsKey(subCommand)) {
-            logger.info("Subcommand " + subCommand + " does not exist, returning");
+            sender.sendRichMessage(LocaleLoader.getInstance().getSyntaxError());
             return false;
         }
-        if (sender.hasPermission(subCommands.get(subCommand).getPermission()))
-            logger.info("Subcommand " + subCommand + " is permitted");
-        else {
-            logger.info("Subcommand " + subCommand + " is not permitted, returning");
+        if (!sender.hasPermission(subCommands.get(subCommand).getPermission())) {
+            sender.sendRichMessage(LocaleLoader.getInstance().getNoPermission());
             return false;
         }
         subCommands.get(subCommand).onCommand(sender, command, s, args);
@@ -49,7 +44,10 @@ public class PronounCommand implements TabExecutor {
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         subCommandList.clear();
         if (args.length >= 2) {
-            return null;
+            String subCommand = args[0].toLowerCase();
+            if (subCommands.containsKey(subCommand)) {
+                return subCommands.get(subCommand).onTabComplete(sender, command, s, args);
+            }
         }
         for (SubCommand subCommand : SimplePronouns.subCommands.values()) {
             if (sender.hasPermission(subCommand.getPermission())) {

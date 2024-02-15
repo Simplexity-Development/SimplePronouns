@@ -1,41 +1,48 @@
 pronouns:
-  he:
+  he-him:
+    selectable: true
     subjective: "he"
     objective: "him"
     possessive: "his"
     possessive-adj: "his"
     reflexive: "himself"
-  she:
+  she-her:
+    selectable: true
     subjective: "she"
     objective: "her"
     possessive: "her"
     possessive-adj: "hers"
     reflexive: "herself"
-  they:
+  they-them:
+    selectable: true
     subjective: "they"
     objective: "them"
     possessive: "their"
     possessive-adj: "theirs"
     reflexive: "themself"
-  they-plural:
+  they-them-plural:
+    selectable: true
     subjective: "they"
     objective: "them"
     possessive: "their"
     possessive-adj: "theirs"
     reflexive: "themselves"
   you:
+    selectable: false
     subjective: "you"
     objective: "you"
     possessive: "your"
     possessive-adj: "yours"
     reflexive: "yourself"
-  me:
+  me-i:
+    selectable: false
     subjective: "I"
     objective: "me"
     possessive: "my"
     possessive-adj: "mine"
     reflexive: "myself"
-  we:
+  we-us:
+    selectable: false
     subjective: "we"
     objective: "us"
     possessive: "our"

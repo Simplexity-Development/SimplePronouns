@@ -1,4 +1,4 @@
-package simplexity.simplepronouns;
+package simplexity.simplepronouns.saving;
 
 
 import simplexity.simplepronouns.configs.ConfigLoader;

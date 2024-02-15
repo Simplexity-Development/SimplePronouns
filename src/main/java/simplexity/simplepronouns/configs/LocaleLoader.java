@@ -19,8 +19,8 @@ public class LocaleLoader {
     
     private String pronounsSet, pronounsClear, pronounsGet, pronounsSetOther, pronounsClearOther, pronounsGetOther;
     private String exampleSentence;
-    private String errorMustBePlayer, noPermission, syntaxError, notEnoughArguments;
-    private String commandReloaded, listHeader, listItem;
+    private String errorMustBePlayer, noPermission, syntaxError, notEnoughArguments, notConfigured;
+    private String commandReloaded, helpHeader, listHelp, setHelp, listHeader, listItem;
     
     private LocaleLoader() {
         if (!localeFile.exists()) {
@@ -54,9 +54,14 @@ public class LocaleLoader {
         noPermission = localeConfig.getString("errors.no-permission");
         syntaxError = localeConfig.getString("errors.syntax-error");
         notEnoughArguments = localeConfig.getString("errors.not-enough-arguments");
+        notConfigured = localeConfig.getString("errors.not-configured");
         commandReloaded = localeConfig.getString("command-feedback.reloaded");
+        helpHeader = localeConfig.getString("command-feedback.help-header");
+        listHelp = localeConfig.getString("command-feedback.list-help");
+        setHelp = localeConfig.getString("command-feedback.set-help");
         listHeader = localeConfig.getString("command-feedback.list-header");
         listItem = localeConfig.getString("command-feedback.list-item");
+        
     }
     
     public String getPronounsSet() {
@@ -102,9 +107,21 @@ public class LocaleLoader {
     public String getNotEnoughArguments() {
         return notEnoughArguments;
     }
+    public String getNotConfigured() {
+        return notConfigured;
+    }
     
     public String getCommandReloaded() {
         return commandReloaded;
+    }
+    public String getHelpHeader() {
+        return helpHeader;
+    }
+    public String getListHelp() {
+        return listHelp;
+    }
+    public String getSetHelp() {
+        return setHelp;
     }
     public String getListHeader() {
         return listHeader;
@@ -112,4 +129,5 @@ public class LocaleLoader {
     public String getListItem() {
         return listItem;
     }
+    
 }

@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 public class Util {
     private static MiniMessage miniMessage = SimplePronouns.getMiniMessage();
     
-    public static NamespacedKey pronounsKey = new NamespacedKey(SimplePronouns.getInstance(), "pronouns");
     public static String pronounBasePerm = "pronouns";
     public static String pronounSetPerm = "pronouns.set";
     public static String pronounRemovePerm = "pronouns.remove";
@@ -33,7 +32,10 @@ public class Util {
         return true;
     }
     
-    public static Component parsePronouns(String string,Pronoun pronoun){
+    public static Component parsePronouns(String string, Pronoun pronoun){
+        if (pronoun == null) {
+            return miniMessage.deserialize(string);
+        }
         return miniMessage.deserialize(string,
                 Placeholder.parsed("sub", pronoun.getSubjective()),
                 Placeholder.parsed("obj", pronoun.getObjective()),

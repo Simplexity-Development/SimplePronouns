@@ -1,6 +1,7 @@
 #ye
+#available save types: PDC, YML, MYSQL
+save-type: PDC
 mysql:
-  enabled: false
   ip: "0.0.0.0:8080"
   name: coolDatabase
   username: username1

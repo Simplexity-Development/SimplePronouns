@@ -6,13 +6,11 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import simplexity.simplepronouns.Pronoun;
-import simplexity.simplepronouns.PronounManager;
 import simplexity.simplepronouns.SimplePronouns;
 import simplexity.simplepronouns.Util;
-import simplexity.simplepronouns.configs.ConfigLoader;
 import simplexity.simplepronouns.configs.LocaleLoader;
+import simplexity.simplepronouns.configs.PronounLoader;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class ListCommand extends SubCommand {
@@ -29,7 +27,8 @@ public class ListCommand extends SubCommand {
         }
         Component messageToSend = Component.empty();
         messageToSend = messageToSend.append(SimplePronouns.getMiniMessage().deserialize(LocaleLoader.getInstance().getListHeader()));
-        for (Pronoun p : PronounManager.pronouns.values()) {
+        for (Pronoun p : PronounLoader.pronouns.values()) {
+            if (!p.isSelectable()) continue;
             messageToSend = messageToSend.append(Util.parsePronouns(LocaleLoader.getInstance().getListItem(), p));
         }
         sender.sendMessage(messageToSend);

@@ -12,7 +12,11 @@ errors:
   no-permission: "<red>You do not have permission to run this command</red>"
   syntax-error: "<red>Command not found, please check your spelling and run the command again</red>"
   not-enough-arguments: "<red>Not enough arguments provided</red>"
+  not-configured: "<red><input> has not been configured as a selectable pronoun. Please check your syntax and check again</red>"
 command-feedback:
   reloaded: "<gold>SimplePronouns Reloaded</gold>"
+  help-header: "<white><bold>[</bold><aqua>Pronouns Help</aqua><bold>]</bold></white>"
+  list-help: "\n <gray>- <white>/pronouns <yellow>list</yellow></white> : Lists the configured pronouns and their variations."
+  set-help: "\n <gray>- <white>/pronouns <yellow>set {pronoun}</yellow></white> : Sets your chosen pronouns"
   list-header: "<aqua>The current configured pronouns are:</aqua>"
-  list-item: "\n<bold>[<green><label></green>]</bold>\n  - <yellow><sub></yellow>\n  - <yellow><ref></yellow>\n  - <yellow><obj></yellow>\n  - <yellow><pos></yellow>\n  - <yellow><posadj></yellow>"
+  list-item: "\n<bold>[</bold><green><label></green><bold>]</bold>\n - Subjective: <yellow><u><sub></u></yellow>\n - Objective <yellow><u><obj></u></yellow>\n - Possessive: <yellow><u><pos></u></yellow>\n - Possessive-Adjective: <yellow><u><posadj></u></yellow>\n - Reflexive: <yellow><u><ref></u></yellow>"
