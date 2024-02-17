@@ -7,7 +7,7 @@ public abstract class SubCommand implements TabExecutor {
     private final String label;
     private final String helpMessage;
     
-    SubCommand(String permission, String label, String helpMessage){
+    public SubCommand(String permission, String label, String helpMessage){
         this.permission = permission;
         this.label = label;
         this.helpMessage = helpMessage;

@@ -6,6 +6,7 @@ import simplexity.simplepronouns.SimplePronouns;
 public class ConfigLoader {
     
     private static ConfigLoader instance;
+    private String defaultPronouns;
     private String saveType;
     private String ip;
     private String name;
@@ -22,6 +23,7 @@ public class ConfigLoader {
     
     public void loadConfig() {
         FileConfiguration config = SimplePronouns.getInstance().getConfig();
+        defaultPronouns = config.getString("default-pronouns");
         saveType = config.getString("save-type");
         ip = config.getString("mysql.ip");
         name = config.getString("mysql.name");
@@ -31,6 +33,9 @@ public class ConfigLoader {
         LocaleLoader.getInstance().loadLocale();
     }
     
+    public String getDefaultPronouns() {
+        return defaultPronouns;
+    }
     public String getSaveType() {
         return saveType;
     }

@@ -27,7 +27,12 @@ public class HelpCommand extends SubCommand {
         }
         Component helpMessage = miniMessage.deserialize(LocaleLoader.getInstance().getHelpHeader());
         for (SubCommand subCommand : SimplePronouns.subCommands.values()) {
+            if (!sender.hasPermission(subCommand.getPermission())) continue;
             helpMessage = helpMessage.append(miniMessage.deserialize(subCommand.getHelpMessage()));
+        }
+        for (SubCommand adminSubCommand : SimplePronouns.adminSubCommands.values()) {
+            if (!sender.hasPermission(adminSubCommand.getPermission())) continue;
+            helpMessage = helpMessage.append(miniMessage.deserialize(adminSubCommand.getHelpMessage()));
         }
         sender.sendMessage(helpMessage);
         return true;

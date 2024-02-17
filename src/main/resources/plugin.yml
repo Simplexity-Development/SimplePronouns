@@ -13,14 +13,26 @@ permissions:
   pronouns.set:
     description: Allows the user to set their pronouns
     default: op
-  pronouns.remove:
+  pronouns.list:
+    description: Allows the user to see a list of all pronouns
+    default: op
+  pronouns.get:
+    description: Allows the user to see what pronouns other people are using
+    default: op
+  pronouns.clear:
     description: Allows the user to remove their pronouns
     default: op
-  pronouns.other.set:
+  pronouns.admin:
+    description: Allows the user to use administrative commands
+    default: op
+  pronouns.admin.set:
     description: Allows the user to set other users' pronouns
+    default: op
+  pronouns.admin.clear:
+    description: Allows the user to clear other users' pronouns
     default: op
   pronouns.reload:
     description: Allows the user to reload the plugin
     default: op
 softdepend:
-- PlaceholderAPI
+  - PlaceholderAPI

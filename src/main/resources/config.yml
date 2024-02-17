@@ -1,4 +1,5 @@
 #ye
+default-pronouns: "they-them"
 #available save types: PDC, YML, MYSQL
 save-type: PDC
 mysql:

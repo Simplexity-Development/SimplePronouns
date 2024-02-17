@@ -4,10 +4,14 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.plugin.java.JavaPlugin;
 import simplexity.simplepronouns.commands.PronounCommand;
 import simplexity.simplepronouns.commands.SPReload;
+import simplexity.simplepronouns.commands.subcommands.AdminCommand;
+import simplexity.simplepronouns.commands.subcommands.GetCommand;
 import simplexity.simplepronouns.commands.subcommands.HelpCommand;
 import simplexity.simplepronouns.commands.subcommands.ListCommand;
 import simplexity.simplepronouns.commands.subcommands.SetCommand;
 import simplexity.simplepronouns.commands.subcommands.SubCommand;
+import simplexity.simplepronouns.commands.subcommands.adminsubcommands.ClearAdminCommand;
+import simplexity.simplepronouns.commands.subcommands.adminsubcommands.SetAdminCommand;
 import simplexity.simplepronouns.configs.ConfigLoader;
 import simplexity.simplepronouns.configs.LocaleLoader;
 import simplexity.simplepronouns.configs.PronounLoader;
@@ -19,6 +23,7 @@ public final class SimplePronouns extends JavaPlugin {
     
     private static SimplePronouns instance;
     public static HashMap<String, SubCommand> subCommands = new HashMap<>();
+    public static HashMap<String, SubCommand> adminSubCommands = new HashMap<>();
     private static MiniMessage miniMessage = MiniMessage.miniMessage();
     
     
@@ -37,6 +42,7 @@ public final class SimplePronouns extends JavaPlugin {
             this.getLogger().info("This plugin currently has no functionality independent of Placeholder API, it is highly recommended you download that plugin.");
         }
         populateSubCommands();
+        populateAdminSubCommands();
     }
     
     public static SimplePronouns getInstance() {
@@ -51,6 +57,13 @@ public final class SimplePronouns extends JavaPlugin {
         subCommands.put("set", new SetCommand(Util.pronounSetPerm, "set", LocaleLoader.getInstance().getSetHelp()));
         subCommands.put("list", new ListCommand(Util.pronounListPerm, "list", LocaleLoader.getInstance().getListHelp()));
         subCommands.put("help", new HelpCommand(Util.pronounBasePerm, "help", ""));
+        subCommands.put("get", new GetCommand(Util.pronounGetPerm, "get", LocaleLoader.getInstance().getGetHelp()));
+        subCommands.put("admin", new AdminCommand(Util.pronounAdminPerm, "admin", ""));
+    }
+    
+    private void populateAdminSubCommands() {
+        adminSubCommands.put("set", new SetAdminCommand(Util.pronounAdminSet, "set", LocaleLoader.getInstance().getAdminSetHelp()));
+        adminSubCommands.put("clear", new ClearAdminCommand(Util.pronounAdminClear, "clear", LocaleLoader.getInstance().getAdminClearHelp()));
     }
     
     
