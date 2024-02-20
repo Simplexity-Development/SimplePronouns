@@ -2,6 +2,7 @@ package simplexity.simplepronouns.configs;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import simplexity.simplepronouns.SimplePronouns;
+import simplexity.simplepronouns.saving.PronounManager;
 
 public class ConfigLoader {
     
@@ -31,6 +32,7 @@ public class ConfigLoader {
         password = config.getString("mysql.password");
         saveType = config.getString("save-type").toLowerCase();
         LocaleLoader.getInstance().loadLocale();
+        PronounManager.loadSaveHandler();
     }
     
     public String getDefaultPronouns() {

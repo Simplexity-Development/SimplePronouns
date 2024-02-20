@@ -3,24 +3,36 @@ package simplexity.simplepronouns.saving;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import simplexity.simplepronouns.Pronoun;
+import simplexity.simplepronouns.configs.ConfigLoader;
 import simplexity.simplepronouns.configs.PronounLoader;
 
 public class PronounManager {
+
+    private static SaveHandler saveHandler;
     
-    
-    public static void setSelectedPronoun(OfflinePlayer offlinePlayer, Pronoun pronoun) {
-        if (!(offlinePlayer instanceof Player player)) return;
-        String id = pronoun.getLabel();
-        PlayerPDC.savePronouns(player, id);
+    public static boolean setSelectedPronoun(OfflinePlayer player, Pronoun pronoun) {
+        return saveHandler.setPronoun(player, pronoun.getLabel());
     }
     
-    public static Pronoun getSelectedPronoun(OfflinePlayer offlinePlayer) {
-        if (!(offlinePlayer instanceof Player player)) return null;
-        return PlayerPDC.getPronouns(player);
+    public static Pronoun getSelectedPronoun(OfflinePlayer player) {
+        Pronoun retrievedPronoun = saveHandler.getPronoun(player);
+        if (retrievedPronoun == null) {
+            // TODO: Return default
+        }
+        return retrievedPronoun;
     }
     
     public static Pronoun getPronounFromString(String string) {
         return PronounLoader.pronouns.get(string);
+    }
+
+    public static void loadSaveHandler() {
+        switch (ConfigLoader.getInstance().getSaveType()) {
+            case "pdc" -> saveHandler = new PlayerPDC();
+            // case "yml" -> saveHandler = new YML(); TODO: Not Yet Implemented
+            case "mysql" -> saveHandler = new DatabaseManager();
+        }
+        saveHandler.init();
     }
     
     

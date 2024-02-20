@@ -1,21 +1,29 @@
 package simplexity.simplepronouns.saving;
 
 import org.bukkit.NamespacedKey;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 import simplexity.simplepronouns.Pronoun;
 import simplexity.simplepronouns.SimplePronouns;
 import simplexity.simplepronouns.configs.PronounLoader;
 
-public class PlayerPDC {
+public class PlayerPDC extends SaveHandler {
     public static NamespacedKey pronounsKey = new NamespacedKey(SimplePronouns.getInstance(), "pronouns");
-    
-    public static void savePronouns(Player player, String label){
-        player.getPersistentDataContainer().set(pronounsKey, PersistentDataType.STRING, label);
+
+    public void init() {
+
+    }
+
+    public boolean setPronoun(OfflinePlayer player, String pronoun){
+        if (!(player instanceof Player p)) return false;
+        p.getPersistentDataContainer().set(pronounsKey, PersistentDataType.STRING, pronoun);
+        return true;
     }
     
-    public static Pronoun getPronouns(Player player){
-        String label = player.getPersistentDataContainer().get(pronounsKey, PersistentDataType.STRING);
+    public Pronoun getPronoun(OfflinePlayer player){
+        if (!(player instanceof Player p)) return null; // TODO: Default to something cause null not the best.
+        String label = p.getPersistentDataContainer().get(pronounsKey, PersistentDataType.STRING);
         return PronounLoader.pronouns.get(label);
     }
     
