@@ -3,7 +3,7 @@ default-pronouns: "they-them"
 #available save types: PDC, YML, MYSQL
 save-type: PDC
 mysql:
-  ip: "0.0.0.0:8080"
+  ip: "localhost:3306"
   name: coolDatabase
   username: username1
   password: badpassword!
