@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import simplexity.simplepronouns.commands.PronounCommand;
 import simplexity.simplepronouns.commands.SPReload;
 import simplexity.simplepronouns.commands.subcommands.AdminCommand;
+import simplexity.simplepronouns.commands.subcommands.ClearCommand;
 import simplexity.simplepronouns.commands.subcommands.GetCommand;
 import simplexity.simplepronouns.commands.subcommands.HelpCommand;
 import simplexity.simplepronouns.commands.subcommands.ListCommand;
@@ -24,7 +25,7 @@ public final class SimplePronouns extends JavaPlugin {
     private static SimplePronouns instance;
     public static HashMap<String, SubCommand> subCommands = new HashMap<>();
     public static HashMap<String, SubCommand> adminSubCommands = new HashMap<>();
-    private static MiniMessage miniMessage = MiniMessage.miniMessage();
+    private static final MiniMessage miniMessage = MiniMessage.miniMessage();
     
     
     @Override
@@ -37,7 +38,7 @@ public final class SimplePronouns extends JavaPlugin {
         this.getCommand("pronouns").setExecutor(new PronounCommand());
         this.getCommand("SPReload").setExecutor(new SPReload());
         if (this.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-            new PronounPlaceholders(this).register();
+            new PronounPlaceholders().register();
         } else {
             this.getLogger().info("This plugin currently has no functionality independent of Placeholder API, it is highly recommended you download that plugin.");
         }
@@ -59,6 +60,7 @@ public final class SimplePronouns extends JavaPlugin {
         subCommands.put("help", new HelpCommand(Util.pronounBasePerm, "help", ""));
         subCommands.put("get", new GetCommand(Util.pronounGetPerm, "get", LocaleLoader.getInstance().getGetHelp()));
         subCommands.put("admin", new AdminCommand(Util.pronounAdminPerm, "admin", ""));
+        subCommands.put("clear", new ClearCommand(Util.pronounClearPerm, "clear", LocaleLoader.getInstance().getClearHelp()));
     }
     
     private void populateAdminSubCommands() {

@@ -10,7 +10,6 @@ import simplexity.simplepronouns.SimplePronouns;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -18,7 +17,6 @@ import java.util.logging.Logger;
 public class PronounLoader {
     
     public static HashMap<String, Pronoun> pronouns = new HashMap<>();
-    public static ArrayList<String> pronounLabels = new ArrayList<>();
     private static PronounLoader instance;
     private final String fileName = "pronouns.yml";
     private final File pronounFile = new File(SimplePronouns.getInstance().getDataFolder(), fileName);
@@ -52,7 +50,6 @@ public class PronounLoader {
             return;
         }
         pronouns.clear();
-        pronounLabels.clear();
         Set<String> keys = pronounSection.getKeys(false);
         for (String pronounKey : keys) {
             if (pronounKey == null) continue;
@@ -64,7 +61,6 @@ public class PronounLoader {
                     configSection.getString("possessive"),
                     configSection.getString("possessive-adj"),
                     configSection.getString("reflexive")));
-            pronounLabels.add(pronounKey);
         }
     }
     

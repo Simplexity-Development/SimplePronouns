@@ -29,6 +29,23 @@ public class GetCommand extends SubCommand {
             sender.sendRichMessage(LocaleLoader.getInstance().getNoPermission());
             return false;
         }
+        if (args.length < 2) {
+            return getOwnPronouns(sender);
+        }
+        return getOtherPronouns(sender, args);
+    }
+    
+    private boolean getOwnPronouns(CommandSender sender){
+        if (!(sender instanceof Player playerSender)) {
+            sender.sendRichMessage(LocaleLoader.getInstance().getOnlyAPlayer());
+            return false;
+        }
+        sender.sendMessage(Util.parsePronouns(playerSender, (LocaleLoader.getInstance().getPronounsGet() +
+                LocaleLoader.getInstance().getListItem()), PronounManager.getSelectedPronoun(playerSender)));
+        return true;
+    }
+    
+    private boolean getOtherPronouns(CommandSender sender, String[] args) {
         String playerString = args[1];
         Player player = Util.checkPlayer(playerString);
         if (player == null) {

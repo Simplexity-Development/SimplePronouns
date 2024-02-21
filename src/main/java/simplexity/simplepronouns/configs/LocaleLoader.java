@@ -7,7 +7,6 @@ import simplexity.simplepronouns.SimplePronouns;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 public class LocaleLoader {
     
@@ -15,12 +14,11 @@ public class LocaleLoader {
     private final String fileName = "locale.yml";
     private final File localeFile = new File(SimplePronouns.getInstance().getDataFolder(), fileName);
     private final FileConfiguration localeConfig = new YamlConfiguration();
-    Logger logger = SimplePronouns.getInstance().getLogger();
     
     private String pronounsSet, pronounsClear, pronounsGet, pronounsAdminSet, pronounsAdminClear;
     private String exampleSentence;
-    private String noPermission, syntaxError, notEnoughArguments, notConfigured, invalidPlayer, defaultPronoun;
-    private String commandReloaded, helpHeader, listHelp, setHelp, getHelp, adminSetHelp, adminClearHelp, listHeader,
+    private String noPermission, syntaxError, notEnoughArguments, notConfigured, invalidPlayer, defaultPronoun, onlyAPlayer;
+    private String commandReloaded, helpHeader, listHelp, setHelp, getHelp, clearHelp, adminSetHelp, adminClearHelp, listHeader,
             listItem, userPronouns;
     
     private LocaleLoader() {
@@ -57,11 +55,13 @@ public class LocaleLoader {
         notConfigured = localeConfig.getString("errors.not-configured");
         invalidPlayer = localeConfig.getString("errors.invalid-player");
         defaultPronoun = localeConfig.getString("errors.default-pronoun");
+        onlyAPlayer = localeConfig.getString("errors.only-a-player");
         commandReloaded = localeConfig.getString("command-feedback.reloaded");
         helpHeader = localeConfig.getString("command-feedback.help-header");
         listHelp = localeConfig.getString("command-feedback.list-help");
         setHelp = localeConfig.getString("command-feedback.set-help");
         getHelp = localeConfig.getString("command-feedback.get-help");
+        clearHelp = localeConfig.getString("command-feedback.clear-help");
         adminSetHelp = localeConfig.getString("command-feedback.admin-set-help");
         adminClearHelp = localeConfig.getString("command-feedback.admin-clear-help");
         listHeader = localeConfig.getString("command-feedback.list-header");
@@ -113,8 +113,13 @@ public class LocaleLoader {
     public String getInvalidPlayer() {
         return invalidPlayer;
     }
+    
     public String getDefaultPronoun() {
         return defaultPronoun;
+    }
+    
+    public String getOnlyAPlayer() {
+        return onlyAPlayer;
     }
     
     public String getCommandReloaded() {
@@ -135,6 +140,10 @@ public class LocaleLoader {
     
     public String getGetHelp() {
         return getHelp;
+    }
+    
+    public String getClearHelp() {
+        return clearHelp;
     }
     
     public String getAdminSetHelp() {

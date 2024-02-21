@@ -38,11 +38,12 @@ public class Util {
             return miniMessage.deserialize(string);
         }
         return miniMessage.deserialize(string,
-                Placeholder.unparsed("sub", pronoun.getSubjective()),
-                Placeholder.unparsed("obj", pronoun.getObjective()),
-                Placeholder.unparsed("pos", pronoun.getPossessive()),
-                Placeholder.unparsed("posadj", pronoun.getPossessiveAdjective()),
-                Placeholder.unparsed("ref", pronoun.getReflexive()));
+                Placeholder.unparsed("label", convertToTitleCase(pronoun.getSubjective()) + "/" + convertToTitleCase(pronoun.getObjective())),
+                Placeholder.unparsed("sub", convertToTitleCase(pronoun.getSubjective())),
+                Placeholder.unparsed("obj", convertToTitleCase(pronoun.getObjective())),
+                Placeholder.unparsed("pos", convertToTitleCase(pronoun.getPossessive())),
+                Placeholder.unparsed("posadj", convertToTitleCase(pronoun.getPossessiveAdjective())),
+                Placeholder.unparsed("ref", convertToTitleCase(pronoun.getReflexive())));
     }
     
     public static Component parsePronouns(Player player, String string, Pronoun pronoun){
@@ -50,11 +51,12 @@ public class Util {
             return miniMessage.deserialize(string);
         }
         return miniMessage.deserialize(string,
-                Placeholder.unparsed("sub", pronoun.getSubjective()),
-                Placeholder.unparsed("obj", pronoun.getObjective()),
-                Placeholder.unparsed("pos", pronoun.getPossessive()),
-                Placeholder.unparsed("posadj", pronoun.getPossessiveAdjective()),
-                Placeholder.unparsed("ref", pronoun.getReflexive()),
+                Placeholder.unparsed("label", convertToTitleCase(pronoun.getSubjective()) + "/" + convertToTitleCase(pronoun.getObjective())),
+                Placeholder.unparsed("sub", convertToTitleCase(pronoun.getSubjective())),
+                Placeholder.unparsed("obj", convertToTitleCase(pronoun.getObjective())),
+                Placeholder.unparsed("pos", convertToTitleCase(pronoun.getPossessive())),
+                Placeholder.unparsed("posadj", convertToTitleCase(pronoun.getPossessiveAdjective())),
+                Placeholder.unparsed("ref", convertToTitleCase(pronoun.getReflexive())),
                 Placeholder.component("name", player.displayName()));
     }
     
@@ -65,6 +67,22 @@ public class Util {
         } else {
             return null;
         }
+    }
+    
+    public static String convertToTitleCase(String input) {
+        if (input == null || input.isEmpty()) {
+            return "";
+        }
+        String[] words = input.split("\\s+");
+        StringBuilder result = new StringBuilder();
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                result.append(Character.toUpperCase(word.charAt(0)))
+                        .append(word.substring(1).toLowerCase())
+                        .append(" ");
+            }
+        }
+        return result.toString().trim();
     }
 
 }

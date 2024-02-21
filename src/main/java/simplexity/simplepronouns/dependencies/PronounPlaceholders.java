@@ -3,15 +3,11 @@ package simplexity.simplepronouns.dependencies;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
-import simplexity.simplepronouns.SimplePronouns;
 import simplexity.simplepronouns.saving.PronounManager;
 
 public class PronounPlaceholders extends PlaceholderExpansion {
     
-    private final SimplePronouns plugin;
-    
-    public PronounPlaceholders(SimplePronouns plugin) {
-        this.plugin = plugin;
+    public PronounPlaceholders() {
     }
     
     @Override

@@ -1,6 +1,6 @@
 #ye
 default-pronouns: "they-them"
-#available save types: PDC, YML, MYSQL
+#available save types: PDC, MYSQL
 save-type: PDC
 mysql:
   ip: "localhost:3306"

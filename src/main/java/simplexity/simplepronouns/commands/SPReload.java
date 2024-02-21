@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
+import simplexity.simplepronouns.SimplePronouns;
 import simplexity.simplepronouns.Util;
 import simplexity.simplepronouns.configs.ConfigLoader;
 import simplexity.simplepronouns.configs.LocaleLoader;
@@ -17,6 +18,7 @@ public class SPReload implements CommandExecutor {
             sender.sendRichMessage(LocaleLoader.getInstance().getNoPermission());
             return false;
         }
+        SimplePronouns.getInstance().reloadConfig();
         ConfigLoader.getInstance().loadConfig();
         LocaleLoader.getInstance().loadLocale();
         PronounLoader.getInstance().loadPronouns();
