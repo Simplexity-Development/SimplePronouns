@@ -26,9 +26,9 @@ public class PronounManager {
     public static void loadSaveHandler() {
         if (saveHandler != null) saveHandler.close();
         switch (ConfigLoader.getInstance().getSaveType()) {
-            case "pdc" -> saveHandler = new PlayerPDC();
             // case "yml" -> saveHandler = new YML(); TODO: Not Yet Implemented
             case "mysql" -> saveHandler = new DatabaseManager();
+            default -> saveHandler = new PlayerPDC();
         }
         saveHandler.init();
     }
