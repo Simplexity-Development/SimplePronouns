@@ -12,7 +12,7 @@ public class PronounPlaceholders extends PlaceholderExpansion {
     
     @Override
     public @NotNull String getIdentifier() {
-        return "pronoun";
+        return "sp";
     }
     
     @Override
@@ -32,7 +32,7 @@ public class PronounPlaceholders extends PlaceholderExpansion {
     
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
-        String[] paramList = params.split("_");
+        String[] paramList = params.split("-");
         String pronoun = switch (paramList[0]) {
             case "sub" -> PronounManager.getSelectedPronoun(player).getSubjective();
             case "obj" -> PronounManager.getSelectedPronoun(player).getObjective();
@@ -44,8 +44,8 @@ public class PronounPlaceholders extends PlaceholderExpansion {
         if (pronoun == null) return null;
         if (paramList.length > 1) {
             pronoun = switch (paramList[1]) {
-                case "caps" -> capitalizeString(pronoun);
-                case "all-caps" -> pronoun.toUpperCase();
+                case "title" -> capitalizeString(pronoun);
+                case "caps" -> pronoun.toUpperCase();
                 default -> pronoun;
             };
         }
