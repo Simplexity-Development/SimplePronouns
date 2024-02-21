@@ -40,13 +40,13 @@ public class DatabaseManager extends SaveHandler {
             }
 
         } catch (SQLException e) {
-            if (e.getSQLState().equals("08001")) {
+            if (e.getSQLState().equals("42000")) {
                 logger.severe("Could not find database " + dbName + ", please create this database or fix the name to use MySQL.");
-                enabled = false;
             }
             else {
                 e.printStackTrace();
             }
+            enabled = false;
         }
     }
 
