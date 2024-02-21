@@ -7,7 +7,7 @@ allow-custom-pronouns: false
 save-type: PDC
 mysql:
   ip: "localhost:3306"
-  name: coolDatabase
+  name: pronouns
   username: username1
   password: badpassword!
 

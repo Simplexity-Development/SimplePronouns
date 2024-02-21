@@ -17,7 +17,7 @@ public class LocaleLoader {
     
     private String pronounsSet, pronounsClear, pronounsGet, pronounsAdminSet, pronounsAdminClear;
     private String exampleSentence;
-    private String noPermission, syntaxError, notEnoughArguments, notConfigured, invalidPlayer, defaultPronoun, onlyAPlayer;
+    private String noPermission, syntaxError, notEnoughArguments, notConfigured, invalidPlayer, defaultPronoun, onlyAPlayer, noCommands;
     private String commandReloaded, helpHeader, listHelp, setHelp, getHelp, clearHelp, adminSetHelp, adminClearHelp, adminCustomHelp,
             listHeader, listItem, userPronouns;
     
@@ -56,6 +56,7 @@ public class LocaleLoader {
         invalidPlayer = localeConfig.getString("errors.invalid-player");
         defaultPronoun = localeConfig.getString("errors.default-pronoun");
         onlyAPlayer = localeConfig.getString("errors.only-a-player");
+        noCommands = localeConfig.getString("errors.no-commands");
         commandReloaded = localeConfig.getString("command-feedback.reloaded");
         helpHeader = localeConfig.getString("command-feedback.help-header");
         listHelp = localeConfig.getString("command-feedback.list-help");
@@ -113,6 +114,9 @@ public class LocaleLoader {
     
     public String getInvalidPlayer() {
         return invalidPlayer;
+    }
+    public String getNoCommands() {
+        return noCommands;
     }
     
     public String getDefaultPronoun() {

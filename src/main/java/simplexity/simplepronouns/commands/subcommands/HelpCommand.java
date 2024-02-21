@@ -25,7 +25,7 @@ public class HelpCommand extends SubCommand {
             sender.sendRichMessage(LocaleLoader.getInstance().getNoPermission());
             return false;
         }
-        Component helpMessage = miniMessage.deserialize(LocaleLoader.getInstance().getHelpHeader());
+        Component helpMessage = Component.empty();
         for (SubCommand subCommand : SimplePronouns.subCommands.values()) {
             if (!sender.hasPermission(subCommand.getPermission())) continue;
             helpMessage = helpMessage.append(miniMessage.deserialize(subCommand.getHelpMessage()));
@@ -34,7 +34,11 @@ public class HelpCommand extends SubCommand {
             if (!sender.hasPermission(adminSubCommand.getPermission())) continue;
             helpMessage = helpMessage.append(miniMessage.deserialize(adminSubCommand.getHelpMessage()));
         }
-        sender.sendMessage(helpMessage);
+        if (helpMessage.equals(Component.empty())) {
+            sender.sendRichMessage(LocaleLoader.getInstance().getHelpHeader() + LocaleLoader.getInstance().getNoCommands());
+            return false;
+        }
+        sender.sendMessage(miniMessage.deserialize(LocaleLoader.getInstance().getHelpHeader()).append(helpMessage));
         return true;
     }
     
