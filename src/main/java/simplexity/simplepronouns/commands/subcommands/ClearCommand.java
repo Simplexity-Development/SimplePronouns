@@ -34,7 +34,7 @@ public class ClearCommand extends SubCommand {
         }
         String defaultPronounString = ConfigLoader.getInstance().getDefaultPronouns();
         Pronoun defaultPronoun = PronounLoader.pronouns.get(defaultPronounString);
-        PronounManager.setSelectedPronoun(player, defaultPronoun);
+        PronounManager.setSelectedPronoun(player, null);
         player.sendMessage(Util.parsePronouns(LocaleLoader.getInstance().getPronounsSet() + LocaleLoader.getInstance().getExampleSentence(), defaultPronoun));
         return true;
     }

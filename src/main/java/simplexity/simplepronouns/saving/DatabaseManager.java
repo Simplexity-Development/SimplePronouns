@@ -2,9 +2,11 @@ package simplexity.simplepronouns.saving;
 
 
 import org.bukkit.OfflinePlayer;
+import org.jetbrains.annotations.NotNull;
 import simplexity.simplepronouns.Pronoun;
 import simplexity.simplepronouns.SimplePronouns;
 import simplexity.simplepronouns.configs.ConfigLoader;
+import simplexity.simplepronouns.configs.PronounLoader;
 
 import java.sql.*;
 import java.util.logging.Logger;
@@ -52,6 +54,18 @@ public class DatabaseManager extends SaveHandler {
 
     public boolean setPronoun(OfflinePlayer player, Pronoun pronoun) {
         if (!isEnabled()) return false;
+
+        if (pronoun == null) {
+            String sqlStatement = "DELETE from player_pronouns WHERE id = ?;";
+            try (PreparedStatement statement = connection.prepareStatement(sqlStatement)) {
+                statement.setString(1, player.getUniqueId().toString());
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+            return true;
+        }
+
         String sqlStatement = "REPLACE INTO " + tableName +
                 " (id, subjective, objective, possessive, possessive_adj, reflexive) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
@@ -70,9 +84,10 @@ public class DatabaseManager extends SaveHandler {
         return true;
     }
 
-    public Pronoun getPronoun(OfflinePlayer player) {
-        if (!isEnabled()) return null;
-        Pronoun pronoun = null;
+    public @NotNull Pronoun getPronoun(OfflinePlayer player) {
+        String defaultPronounString = ConfigLoader.getInstance().getDefaultPronouns();
+        Pronoun pronoun = PronounLoader.pronouns.get(defaultPronounString);
+        if (!isEnabled()) return pronoun;
         String sqlStatement = "SELECT * FROM " + tableName + " WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sqlStatement)) {
             statement.setString(1, player.getUniqueId().toString());
