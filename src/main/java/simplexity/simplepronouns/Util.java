@@ -42,8 +42,7 @@ public class Util {
                 Placeholder.unparsed("obj", pronoun.getObjective()),
                 Placeholder.unparsed("pos", pronoun.getPossessive()),
                 Placeholder.unparsed("posadj", pronoun.getPossessiveAdjective()),
-                Placeholder.unparsed("ref", pronoun.getReflexive()),
-                Placeholder.unparsed("label", pronoun.getLabel()));
+                Placeholder.unparsed("ref", pronoun.getReflexive()));
     }
     
     public static Component parsePronouns(Player player, String string, Pronoun pronoun){
@@ -56,7 +55,6 @@ public class Util {
                 Placeholder.unparsed("pos", pronoun.getPossessive()),
                 Placeholder.unparsed("posadj", pronoun.getPossessiveAdjective()),
                 Placeholder.unparsed("ref", pronoun.getReflexive()),
-                Placeholder.unparsed("label", pronoun.getLabel()),
                 Placeholder.component("name", player.displayName()));
     }
     

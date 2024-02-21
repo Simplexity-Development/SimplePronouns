@@ -15,17 +15,16 @@ public class PlayerPDC extends SaveHandler {
 
     }
 
-    public boolean setPronoun(OfflinePlayer player, String pronoun){
+    public boolean setPronoun(OfflinePlayer player, Pronoun pronoun){
         if (!(player instanceof Player p)) return false;
-        p.getPersistentDataContainer().set(pronounsKey, PersistentDataType.STRING, pronoun);
+        p.getPersistentDataContainer().set(pronounsKey, PersistentDataType.STRING, Pronoun.serialize(pronoun));
         return true;
     }
     
     public Pronoun getPronoun(OfflinePlayer player){
         if (!(player instanceof Player p)) return null; // TODO: Default to something cause null not the best.
-        String label = p.getPersistentDataContainer().get(pronounsKey, PersistentDataType.STRING);
-        return PronounLoader.pronouns.get(label);
+        String serializedPronoun = p.getPersistentDataContainer().get(pronounsKey, PersistentDataType.STRING);
+        if (serializedPronoun == null) return null;
+        return Pronoun.deserialize(serializedPronoun);
     }
-    
-
 }

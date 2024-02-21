@@ -9,6 +9,6 @@ public abstract class SaveHandler {
 
     public abstract Pronoun getPronoun(OfflinePlayer player);
 
-    public abstract boolean setPronoun(OfflinePlayer player, String pronoun);
+    public abstract boolean setPronoun(OfflinePlayer player, Pronoun pronoun);
 
 }

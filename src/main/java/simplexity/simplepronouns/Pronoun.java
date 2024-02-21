@@ -1,29 +1,23 @@
 package simplexity.simplepronouns;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Pronoun {
-    String label;
-    boolean selectable;
-    String subjective;
-    String objective;
-    String possessive;
-    String possessiveAdjective;
-    String reflexive;
-    public Pronoun(String label, boolean selectable, String subjective, String objective, String possessive, String possessiveAdjective, String reflexive) {
-        this.label = label;
-        this.selectable = selectable;
+
+    private String subjective;
+    private String objective;
+    private String possessive;
+    private String possessiveAdjective;
+    private String reflexive;
+
+    public Pronoun(String subjective, String objective, String possessive, String possessiveAdjective, String reflexive) {
         this.subjective = subjective;
         this.objective = objective;
         this.possessive = possessive;
         this.possessiveAdjective = possessiveAdjective;
         this.reflexive = reflexive;
     }
-    
-    public String getLabel() {
-        return label;
-    }
-    public boolean isSelectable() {
-        return selectable;
-    }
+
     public String getSubjective() {
         return subjective;
     }
@@ -39,21 +33,6 @@ public class Pronoun {
     public String getReflexive() {
         return reflexive;
     }
-    public void setSubjective(String subjective) {
-        this.subjective = subjective;
-    }
-    public void setSelectable(boolean selectable) {
-        this.selectable = selectable;
-    }
-    public void setObjective(String objective) {
-        this.objective = objective;
-    }
-    public void setPossessive(String possessive) {
-        this.possessive = possessive;
-    }
-    public void setReflexive(String reflexive) {
-        this.reflexive = reflexive;
-    }
     public String toString() {
         return "Pronoun{" +
                 "subjective='" + subjective + '\'' +
@@ -61,6 +40,18 @@ public class Pronoun {
                 ", possessive='" + possessive + '\'' +
                 ", reflexive='" + reflexive + '\'' +
                 '}';
+    }
+
+    public static String serialize(@NotNull Pronoun pronoun) {
+        return String.format("%s///%s///%s///%s///%s",
+                pronoun.subjective, pronoun.objective, pronoun.possessive,
+                pronoun.possessiveAdjective, pronoun.reflexive);
+    }
+
+    public static Pronoun deserialize(@NotNull String string) {
+        String[] arr = string.split("///");
+        if (arr.length != 5) return null;
+        return new Pronoun(arr[0], arr[1], arr[2], arr[3], arr[4]);
     }
 
 }

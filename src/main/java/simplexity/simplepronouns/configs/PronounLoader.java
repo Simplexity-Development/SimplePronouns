@@ -59,16 +59,12 @@ public class PronounLoader {
             ConfigurationSection configSection = pronounConfig.getConfigurationSection("pronouns." + pronounKey);
             if (configSection == null) continue;
             pronouns.put(pronounKey, new Pronoun(
-                    pronounKey,
-                    configSection.getBoolean("selectable"),
                     configSection.getString("subjective"),
                     configSection.getString("objective"),
                     configSection.getString("possessive"),
                     configSection.getString("possessive-adj"),
                     configSection.getString("reflexive")));
-            if (configSection.getBoolean("selectable", false)) {
-                pronounLabels.add(pronounKey);
-            }
+            pronounLabels.add(pronounKey);
         }
     }
     

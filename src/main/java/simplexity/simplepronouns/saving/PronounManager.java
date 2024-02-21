@@ -11,7 +11,7 @@ public class PronounManager {
     private static SaveHandler saveHandler;
     
     public static boolean setSelectedPronoun(OfflinePlayer player, Pronoun pronoun) {
-        return saveHandler.setPronoun(player, pronoun.getLabel());
+        return saveHandler.setPronoun(player, pronoun);
     }
     
     public static Pronoun getSelectedPronoun(OfflinePlayer player) {

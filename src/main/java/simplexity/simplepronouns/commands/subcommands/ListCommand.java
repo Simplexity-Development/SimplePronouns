@@ -28,7 +28,6 @@ public class ListCommand extends SubCommand {
         Component messageToSend = Component.empty();
         messageToSend = messageToSend.append(SimplePronouns.getMiniMessage().deserialize(LocaleLoader.getInstance().getListHeader()));
         for (Pronoun p : PronounLoader.pronouns.values()) {
-            if (!p.isSelectable()) continue;
             messageToSend = messageToSend.append(Util.parsePronouns(LocaleLoader.getInstance().getListItem(), p));
         }
         sender.sendMessage(messageToSend);
