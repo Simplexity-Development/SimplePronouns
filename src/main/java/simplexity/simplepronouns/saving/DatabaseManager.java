@@ -18,23 +18,14 @@ public class DatabaseManager extends SaveHandler {
     boolean enabled = true;
 
     public void init() {
-        String url = "jdbc:mysql://" + ConfigLoader.getInstance().getIp();
+        dbName = ConfigLoader.getInstance().getName();
+        String url = "jdbc:mysql://" + ConfigLoader.getInstance().getIp() + "/" + dbName;
         String user = ConfigLoader.getInstance().getUsername();
         String pass = ConfigLoader.getInstance().getPassword();
-        dbName = ConfigLoader.getInstance().getName();
 
         try {
             connection = DriverManager.getConnection(url, user, pass);
             logger.info("Established connection to the database.");
-            if (checkForDatabase(connection, dbName)) {
-                logger.info("Database " + dbName + " found!");
-            }
-            else {
-                logger.severe("Could not find database " + dbName + ", please create this database or fix the name to use MySQL.");
-                enabled = false;
-                connection.close();
-                return;
-            }
 
             try (Statement statement = connection.createStatement()) {
                 statement.execute("""
@@ -49,7 +40,13 @@ public class DatabaseManager extends SaveHandler {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            if (e.getSQLState().equals("08001")) {
+                logger.severe("Could not find database " + dbName + ", please create this database or fix the name to use MySQL.");
+                enabled = false;
+            }
+            else {
+                e.printStackTrace();
+            }
         }
     }
 
