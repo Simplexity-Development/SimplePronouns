@@ -5,45 +5,34 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Util {
-    private static MiniMessage miniMessage = SimplePronouns.getMiniMessage();
+    private static final MiniMessage miniMessage = SimplePronouns.getMiniMessage();
     
-    public static String pronounBasePerm = "pronouns";
-    public static String pronounSetPerm = "pronouns.set";
-    public static String pronounClearPerm = "pronouns.clear";
-    public static String pronounReloadPerm = "pronouns.reload";
-    public static String pronounListPerm = "pronouns.list";
-    public static String pronounGetPerm = "pronouns.get";
-    public static String pronounAdminPerm = "pronouns.admin";
-    public static String pronounAdminSet = "pronouns.admin.set";
-    public static String pronounAdminClear = "pronouns.admin.clear";
-    
-    public static void checkIfPlayerAndPerms(CommandSender sender, String permission) {
-        if (!(sender instanceof Player player)) {
-            // Must be player error message
-            SimplePronouns.getInstance().getLogger().info("Must be player error message");
-            return;
-        }
-        if (!player.hasPermission(permission)) {
-            // No permission error message
-            SimplePronouns.getInstance().getLogger().info("No permission error message");
-        }
-    }
+    public static String basePerm = "pronouns";
+    public static String setPerm = "pronouns.set";
+    public static String clearPerm = "pronouns.clear";
+    public static String reloadPerm = "pronouns.reload";
+    public static String listPerm = "pronouns.list";
+    public static String getPerm = "pronouns.get";
+    public static String customPerm = "pronouns.custom";
+    public static String adminPerm = "pronouns.admin";
+    public static String adminSet = "pronouns.admin.set";
+    public static String adminClear = "pronouns.admin.clear";
+    public static String adminCustom = "pronouns.admin.custom";
     
     public static Component parsePronouns(String string, Pronoun pronoun){
         if (pronoun == null) {
             return miniMessage.deserialize(string);
         }
         return miniMessage.deserialize(string,
-                Placeholder.unparsed("label", convertToTitleCase(pronoun.getSubjective()) + "/" + convertToTitleCase(pronoun.getObjective())),
-                Placeholder.unparsed("sub", convertToTitleCase(pronoun.getSubjective())),
-                Placeholder.unparsed("obj", convertToTitleCase(pronoun.getObjective())),
-                Placeholder.unparsed("pos", convertToTitleCase(pronoun.getPossessive())),
-                Placeholder.unparsed("posadj", convertToTitleCase(pronoun.getPossessiveAdjective())),
-                Placeholder.unparsed("ref", convertToTitleCase(pronoun.getReflexive())));
+                Placeholder.unparsed("label", convertToTitleCase(pronoun.subjective()) + "/" + convertToTitleCase(pronoun.objective())),
+                Placeholder.unparsed("sub", convertToTitleCase(pronoun.subjective())),
+                Placeholder.unparsed("obj", convertToTitleCase(pronoun.objective())),
+                Placeholder.unparsed("pos", convertToTitleCase(pronoun.possessive())),
+                Placeholder.unparsed("posadj", convertToTitleCase(pronoun.possessiveAdjective())),
+                Placeholder.unparsed("ref", convertToTitleCase(pronoun.reflexive())));
     }
     
     public static Component parsePronouns(Player player, String string, Pronoun pronoun){
@@ -51,12 +40,12 @@ public class Util {
             return miniMessage.deserialize(string);
         }
         return miniMessage.deserialize(string,
-                Placeholder.unparsed("label", convertToTitleCase(pronoun.getSubjective()) + "/" + convertToTitleCase(pronoun.getObjective())),
-                Placeholder.unparsed("sub", convertToTitleCase(pronoun.getSubjective())),
-                Placeholder.unparsed("obj", convertToTitleCase(pronoun.getObjective())),
-                Placeholder.unparsed("pos", convertToTitleCase(pronoun.getPossessive())),
-                Placeholder.unparsed("posadj", convertToTitleCase(pronoun.getPossessiveAdjective())),
-                Placeholder.unparsed("ref", convertToTitleCase(pronoun.getReflexive())),
+                Placeholder.unparsed("label", convertToTitleCase(pronoun.subjective()) + "/" + convertToTitleCase(pronoun.objective())),
+                Placeholder.unparsed("sub", convertToTitleCase(pronoun.subjective())),
+                Placeholder.unparsed("obj", convertToTitleCase(pronoun.objective())),
+                Placeholder.unparsed("pos", convertToTitleCase(pronoun.possessive())),
+                Placeholder.unparsed("posadj", convertToTitleCase(pronoun.possessiveAdjective())),
+                Placeholder.unparsed("ref", convertToTitleCase(pronoun.reflexive())),
                 Placeholder.component("name", player.displayName()));
     }
     

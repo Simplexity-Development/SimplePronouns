@@ -18,8 +18,8 @@ public class LocaleLoader {
     private String pronounsSet, pronounsClear, pronounsGet, pronounsAdminSet, pronounsAdminClear;
     private String exampleSentence;
     private String noPermission, syntaxError, notEnoughArguments, notConfigured, invalidPlayer, defaultPronoun, onlyAPlayer;
-    private String commandReloaded, helpHeader, listHelp, setHelp, getHelp, clearHelp, adminSetHelp, adminClearHelp, listHeader,
-            listItem, userPronouns;
+    private String commandReloaded, helpHeader, listHelp, setHelp, getHelp, clearHelp, adminSetHelp, adminClearHelp, adminCustomHelp,
+            listHeader, listItem, userPronouns;
     
     private LocaleLoader() {
         if (!localeFile.exists()) {
@@ -64,6 +64,7 @@ public class LocaleLoader {
         clearHelp = localeConfig.getString("command-feedback.clear-help");
         adminSetHelp = localeConfig.getString("command-feedback.admin-set-help");
         adminClearHelp = localeConfig.getString("command-feedback.admin-clear-help");
+        adminCustomHelp = localeConfig.getString("command-feedback.admin-custom-help");
         listHeader = localeConfig.getString("command-feedback.list-header");
         listItem = localeConfig.getString("command-feedback.list-item");
         userPronouns = localeConfig.getString("command-feedback.user-pronouns");
@@ -152,6 +153,10 @@ public class LocaleLoader {
     
     public String getAdminClearHelp() {
         return adminClearHelp;
+    }
+    
+    public String getAdminCustomHelp() {
+        return adminCustomHelp;
     }
     
     public String getListHeader() {

@@ -22,6 +22,9 @@ permissions:
   pronouns.clear:
     description: Allows the user to remove their pronouns
     default: op
+  pronouns.custom:
+    description: Allows the user to set custom pronouns for themselves
+    default: op
   pronouns.admin:
     description: Allows the user to use administrative commands
     default: op
@@ -30,6 +33,9 @@ permissions:
     default: op
   pronouns.admin.clear:
     description: Allows the user to clear other users' pronouns
+    default: op
+  pronouns.admin.custom:
+    description: Allows the user to set custom pronouns on other users
     default: op
   pronouns.reload:
     description: Allows the user to reload the plugin

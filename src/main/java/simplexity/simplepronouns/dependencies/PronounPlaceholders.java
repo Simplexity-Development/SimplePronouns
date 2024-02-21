@@ -34,11 +34,11 @@ public class PronounPlaceholders extends PlaceholderExpansion {
     public String onRequest(OfflinePlayer player, @NotNull String params) {
         String[] paramList = params.split("-");
         String pronoun = switch (paramList[0]) {
-            case "sub" -> PronounManager.getSelectedPronoun(player).getSubjective();
-            case "obj" -> PronounManager.getSelectedPronoun(player).getObjective();
-            case "pos" -> PronounManager.getSelectedPronoun(player).getPossessive();
-            case "pos-adj" -> PronounManager.getSelectedPronoun(player).getPossessiveAdjective();
-            case "ref" -> PronounManager.getSelectedPronoun(player).getReflexive();
+            case "sub" -> PronounManager.getSelectedPronoun(player).subjective();
+            case "obj" -> PronounManager.getSelectedPronoun(player).objective();
+            case "pos" -> PronounManager.getSelectedPronoun(player).possessive();
+            case "pos-adj" -> PronounManager.getSelectedPronoun(player).possessiveAdjective();
+            case "ref" -> PronounManager.getSelectedPronoun(player).reflexive();
             default -> null;
         };
         if (pronoun == null) return null;

@@ -2,12 +2,10 @@ package simplexity.simplepronouns.saving;
 
 
 import org.bukkit.OfflinePlayer;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import simplexity.simplepronouns.Pronoun;
 import simplexity.simplepronouns.SimplePronouns;
 import simplexity.simplepronouns.configs.ConfigLoader;
-import simplexity.simplepronouns.configs.PronounLoader;
 
 import java.sql.*;
 import java.util.logging.Logger;
@@ -16,7 +14,7 @@ public class DatabaseManager extends SaveHandler {
 
     Connection connection;
     String dbName;
-    Logger logger = SimplePronouns.getInstance().getLogger();;
+    Logger logger = SimplePronouns.getInstance().getLogger();
     String tableName = "player_pronouns";
     boolean enabled = true;
 
@@ -73,11 +71,11 @@ public class DatabaseManager extends SaveHandler {
                 "VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sqlStatement)) {
             statement.setString(1, player.getUniqueId().toString());
-            statement.setString(2, pronoun.getSubjective());
-            statement.setString(3, pronoun.getObjective());
-            statement.setString(4, pronoun.getPossessive());
-            statement.setString(5, pronoun.getPossessiveAdjective());
-            statement.setString(6, pronoun.getReflexive());
+            statement.setString(2, pronoun.subjective());
+            statement.setString(3, pronoun.objective());
+            statement.setString(4, pronoun.possessive());
+            statement.setString(5, pronoun.possessiveAdjective());
+            statement.setString(6, pronoun.reflexive());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

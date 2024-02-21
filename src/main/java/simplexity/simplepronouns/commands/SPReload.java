@@ -14,7 +14,7 @@ public class SPReload implements CommandExecutor {
     
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if (!sender.hasPermission(Util.pronounReloadPerm)) {
+        if (!sender.hasPermission(Util.reloadPerm)) {
             sender.sendRichMessage(LocaleLoader.getInstance().getNoPermission());
             return false;
         }

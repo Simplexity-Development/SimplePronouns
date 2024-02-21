@@ -13,7 +13,6 @@ import simplexity.simplepronouns.configs.LocaleLoader;
 import simplexity.simplepronouns.configs.PronounLoader;
 import simplexity.simplepronouns.saving.PronounManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SetCommand extends SubCommand {
@@ -22,16 +21,20 @@ public class SetCommand extends SubCommand {
         super(permission, label, helpMessage);
     }
     
-    private final ArrayList<String> pronounList = new ArrayList<>();
-    
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
+        if (!sender.hasPermission(getPermission())) {
+            sender.sendRichMessage(LocaleLoader.getInstance().getNoPermission());
+            return false;
+        }
+        if (!(sender instanceof Player player)) {
+            sender.sendRichMessage(LocaleLoader.getInstance().getOnlyAPlayer());
+            return false;
+        }
         if (args.length < 2) {
             sender.sendRichMessage(LocaleLoader.getInstance().getNotEnoughArguments());
             return false;
         }
-        Util.checkIfPlayerAndPerms(sender, getPermission());
-        Player player = (Player) sender;
         String selectedPronoun = args[1];
         Pronoun pronounObject = PronounLoader.pronouns.get(selectedPronoun.toLowerCase());
         if (pronounObject == null) {
@@ -49,9 +52,8 @@ public class SetCommand extends SubCommand {
     
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        pronounList.clear();
         if (!sender.hasPermission(getPermission()) || args.length > 2) {
-            return pronounList;
+            return List.of("");
         } else {
             return PronounLoader.pronouns.keySet().stream().toList();
         }

@@ -12,7 +12,9 @@ import simplexity.simplepronouns.commands.subcommands.ListCommand;
 import simplexity.simplepronouns.commands.subcommands.SetCommand;
 import simplexity.simplepronouns.commands.subcommands.SubCommand;
 import simplexity.simplepronouns.commands.subcommands.adminsubcommands.ClearAdminCommand;
+import simplexity.simplepronouns.commands.subcommands.adminsubcommands.CustomAdminCommand;
 import simplexity.simplepronouns.commands.subcommands.adminsubcommands.SetAdminCommand;
+import simplexity.simplepronouns.commands.subcommands.CustomPronounCommand;
 import simplexity.simplepronouns.configs.ConfigLoader;
 import simplexity.simplepronouns.configs.LocaleLoader;
 import simplexity.simplepronouns.configs.PronounLoader;
@@ -55,19 +57,20 @@ public final class SimplePronouns extends JavaPlugin {
     }
     
     private void populateSubCommands() {
-        subCommands.put("set", new SetCommand(Util.pronounSetPerm, "set", LocaleLoader.getInstance().getSetHelp()));
-        subCommands.put("list", new ListCommand(Util.pronounListPerm, "list", LocaleLoader.getInstance().getListHelp()));
-        subCommands.put("help", new HelpCommand(Util.pronounBasePerm, "help", ""));
-        subCommands.put("get", new GetCommand(Util.pronounGetPerm, "get", LocaleLoader.getInstance().getGetHelp()));
-        subCommands.put("admin", new AdminCommand(Util.pronounAdminPerm, "admin", ""));
-        subCommands.put("clear", new ClearCommand(Util.pronounClearPerm, "clear", LocaleLoader.getInstance().getClearHelp()));
+        subCommands.put("set", new SetCommand(Util.setPerm, "set", LocaleLoader.getInstance().getSetHelp()));
+        subCommands.put("list", new ListCommand(Util.listPerm, "list", LocaleLoader.getInstance().getListHelp()));
+        subCommands.put("help", new HelpCommand(Util.basePerm, "help", ""));
+        subCommands.put("get", new GetCommand(Util.getPerm, "get", LocaleLoader.getInstance().getGetHelp()));
+        subCommands.put("admin", new AdminCommand(Util.adminPerm, "admin", ""));
+        subCommands.put("clear", new ClearCommand(Util.clearPerm, "clear", LocaleLoader.getInstance().getClearHelp()));
+        subCommands.put("custom", new CustomPronounCommand(Util.customPerm, "custom", ""));
     }
     
     private void populateAdminSubCommands() {
-        adminSubCommands.put("set", new SetAdminCommand(Util.pronounAdminSet, "set", LocaleLoader.getInstance().getAdminSetHelp()));
-        adminSubCommands.put("clear", new ClearAdminCommand(Util.pronounAdminClear, "clear", LocaleLoader.getInstance().getAdminClearHelp()));
+        adminSubCommands.put("set", new SetAdminCommand(Util.adminSet, "set", LocaleLoader.getInstance().getAdminSetHelp()));
+        adminSubCommands.put("clear", new ClearAdminCommand(Util.adminClear, "clear", LocaleLoader.getInstance().getAdminClearHelp()));
+        adminSubCommands.put("custom", new CustomAdminCommand(Util.adminCustom, "custom", LocaleLoader.getInstance().getAdminCustomHelp()));
     }
-    
     
     @Override
     public void onDisable() {
