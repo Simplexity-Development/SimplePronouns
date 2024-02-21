@@ -57,11 +57,11 @@ public class SetAdminCommand extends SubCommand {
     
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        if (args.length != 4){
+        if (args.length != 4) {
             return null;
         } else if (!sender.hasPermission(getPermission())) {
             return null;
         }
-        return PronounLoader.pronounLabels;
+        return PronounLoader.pronouns.keySet().stream().toList();
     }
 }

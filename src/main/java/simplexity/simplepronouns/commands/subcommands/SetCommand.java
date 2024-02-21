@@ -7,11 +7,11 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import simplexity.simplepronouns.Pronoun;
-import simplexity.simplepronouns.saving.PronounManager;
 import simplexity.simplepronouns.SimplePronouns;
 import simplexity.simplepronouns.Util;
 import simplexity.simplepronouns.configs.LocaleLoader;
 import simplexity.simplepronouns.configs.PronounLoader;
+import simplexity.simplepronouns.saving.PronounManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class SetCommand extends SubCommand {
         if (!sender.hasPermission(getPermission()) || args.length > 2) {
             return pronounList;
         } else {
-            return PronounLoader.pronounLabels;
+            return PronounLoader.pronouns.keySet().stream().toList();
         }
     }
 }

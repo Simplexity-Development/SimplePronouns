@@ -19,7 +19,9 @@ import simplexity.simplepronouns.saving.PronounManager;
 import java.util.List;
 
 public class ClearAdminCommand extends SubCommand {
+    
     MiniMessage miniMessage = SimplePronouns.getMiniMessage();
+    
     public ClearAdminCommand(String permission, String label, String helpMessage) {
         super(permission, label, helpMessage);
     }
@@ -30,21 +32,24 @@ public class ClearAdminCommand extends SubCommand {
             sender.sendRichMessage(LocaleLoader.getInstance().getNoPermission());
             return false;
         }
-        Player player = Util.checkPlayer(args[2]);
+        String playerString = args[2];
+        Player player = Util.checkPlayer(playerString);
         if (player == null) {
             sender.sendMessage(miniMessage.deserialize(LocaleLoader.getInstance().getInvalidPlayer(),
-                    Placeholder.unparsed("input", args[2])));
+                    Placeholder.unparsed("input", playerString)));
             return false;
         }
-        Pronoun defaultPronoun = PronounLoader.pronouns.getOrDefault(ConfigLoader.getInstance().getDefaultPronouns(), null);
+        Pronoun defaultPronoun = PronounLoader.pronouns.getOrDefault(ConfigLoader.getInstance().getDefaultPronouns(),
+                null);
         if (defaultPronoun == null) {
             sender.sendRichMessage(LocaleLoader.getInstance().getDefaultPronoun());
             return false;
         }
         PronounManager.setSelectedPronoun(player, defaultPronoun);
-        sender.sendMessage(Util.parsePronouns(player, LocaleLoader.getInstance().getPronounsAdminClear() + LocaleLoader.getInstance().getExampleSentence(),
-                defaultPronoun));
-        player.sendMessage(Util.parsePronouns(LocaleLoader.getInstance().getPronounsClear() + LocaleLoader.getInstance().getExampleSentence(), defaultPronoun));
+        sender.sendMessage(Util.parsePronouns(player, LocaleLoader.getInstance().getPronounsAdminClear() +
+                LocaleLoader.getInstance().getExampleSentence(), defaultPronoun));
+        player.sendMessage(Util.parsePronouns(LocaleLoader.getInstance().getPronounsClear() +
+                LocaleLoader.getInstance().getExampleSentence(), defaultPronoun));
         return true;
     }
     

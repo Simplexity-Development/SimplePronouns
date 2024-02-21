@@ -3,23 +3,27 @@ package simplexity.simplepronouns.commands.subcommands;
 import org.bukkit.command.TabExecutor;
 
 public abstract class SubCommand implements TabExecutor {
+    
     private final String permission;
     private final String label;
     private final String helpMessage;
     
-    public SubCommand(String permission, String label, String helpMessage){
+    public SubCommand(String permission, String label, String helpMessage) {
         this.permission = permission;
         this.label = label;
         this.helpMessage = helpMessage;
     }
-    public String getPermission(){
+    
+    public String getPermission() {
         return permission;
     }
-    public String getLabel(){
+    
+    public String getLabel() {
         return label;
     }
-    public String getHelpMessage(){
+    
+    public String getHelpMessage() {
         return helpMessage;
     }
-
+    
 }

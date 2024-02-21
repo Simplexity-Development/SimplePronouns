@@ -13,7 +13,7 @@ import java.util.List;
 
 public class HelpCommand extends SubCommand {
     
-    private static MiniMessage miniMessage = SimplePronouns.getMiniMessage();
+    private static final MiniMessage miniMessage = SimplePronouns.getMiniMessage();
     
     public HelpCommand(String permission, String label, String helpMessage) {
         super(permission, label, helpMessage);

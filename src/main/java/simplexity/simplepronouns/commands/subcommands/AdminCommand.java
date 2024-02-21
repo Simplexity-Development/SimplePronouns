@@ -60,6 +60,7 @@ public class AdminCommand extends SubCommand {
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         adminSubCommandList.clear();
+        // /pronouns admin [set|clear|get] <player> <pronoun>
         if (args.length == 2) {
             for (SubCommand adminSubCommand : adminSubCommands.values()) {
                 if (!sender.hasPermission(adminSubCommand.getPermission())) continue;
