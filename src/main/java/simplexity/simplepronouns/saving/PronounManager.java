@@ -15,11 +15,8 @@ public class PronounManager {
     }
     
     public static Pronoun getSelectedPronoun(OfflinePlayer player) {
-        Pronoun retrievedPronoun = saveHandler.getPronoun(player);
-        if (retrievedPronoun == null) {
-            // TODO: Return default
-        }
-        return retrievedPronoun;
+        Pronoun pronoun = saveHandler.getPronoun(player);
+        return (pronoun != null) ? pronoun : PronounLoader.pronouns.get(ConfigLoader.getInstance().getDefaultPronouns());
     }
     
     public static Pronoun getPronounFromString(String string) {

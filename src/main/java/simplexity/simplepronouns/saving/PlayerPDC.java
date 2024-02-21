@@ -5,6 +5,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import simplexity.simplepronouns.Pronoun;
 import simplexity.simplepronouns.SimplePronouns;
 import simplexity.simplepronouns.configs.ConfigLoader;
@@ -27,14 +28,12 @@ public class PlayerPDC extends SaveHandler {
         return true;
     }
     
-    public @NotNull Pronoun getPronoun(OfflinePlayer player){
-        String defaultPronounString = ConfigLoader.getInstance().getDefaultPronouns();
-        Pronoun defaultPronoun = PronounLoader.pronouns.get(defaultPronounString);
-        if (!(player instanceof Player p)) return defaultPronoun; // TODO: Default to something cause null not the best.
+    public @Nullable Pronoun getPronoun(OfflinePlayer player){
+        if (!(player instanceof Player p)) return null; // TODO: Default to something cause null not the best.
         String serializedPronoun = p.getPersistentDataContainer().get(pronounsKey, PersistentDataType.STRING);
-        if (serializedPronoun == null) return defaultPronoun;
+        if (serializedPronoun == null) return null;
         Pronoun pronoun = Pronoun.deserialize(serializedPronoun);
-        return (pronoun == null) ? defaultPronoun : pronoun;
+        return pronoun;
     }
 
     public void close() {

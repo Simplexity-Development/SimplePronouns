@@ -45,7 +45,7 @@ public class ClearAdminCommand extends SubCommand {
             sender.sendRichMessage(LocaleLoader.getInstance().getDefaultPronoun());
             return false;
         }
-        PronounManager.setSelectedPronoun(player, defaultPronoun);
+        PronounManager.setSelectedPronoun(player, null);
         sender.sendMessage(Util.parsePronouns(player, LocaleLoader.getInstance().getPronounsAdminClear() +
                 LocaleLoader.getInstance().getExampleSentence(), defaultPronoun));
         player.sendMessage(Util.parsePronouns(LocaleLoader.getInstance().getPronounsClear() +

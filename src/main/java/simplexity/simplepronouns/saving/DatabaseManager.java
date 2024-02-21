@@ -3,6 +3,7 @@ package simplexity.simplepronouns.saving;
 
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import simplexity.simplepronouns.Pronoun;
 import simplexity.simplepronouns.SimplePronouns;
 import simplexity.simplepronouns.configs.ConfigLoader;
@@ -56,9 +57,10 @@ public class DatabaseManager extends SaveHandler {
         if (!isEnabled()) return false;
 
         if (pronoun == null) {
-            String sqlStatement = "DELETE from player_pronouns WHERE id = ?;";
+            String sqlStatement = "DELETE FROM " + tableName + " WHERE id = ?;";
             try (PreparedStatement statement = connection.prepareStatement(sqlStatement)) {
                 statement.setString(1, player.getUniqueId().toString());
+                statement.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
                 return false;
@@ -84,9 +86,8 @@ public class DatabaseManager extends SaveHandler {
         return true;
     }
 
-    public @NotNull Pronoun getPronoun(OfflinePlayer player) {
-        String defaultPronounString = ConfigLoader.getInstance().getDefaultPronouns();
-        Pronoun pronoun = PronounLoader.pronouns.get(defaultPronounString);
+    public @Nullable Pronoun getPronoun(OfflinePlayer player) {
+        Pronoun pronoun = null;
         if (!isEnabled()) return pronoun;
         String sqlStatement = "SELECT * FROM " + tableName + " WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sqlStatement)) {
