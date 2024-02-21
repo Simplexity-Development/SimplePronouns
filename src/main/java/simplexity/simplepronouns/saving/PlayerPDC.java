@@ -27,4 +27,8 @@ public class PlayerPDC extends SaveHandler {
         if (serializedPronoun == null) return null;
         return Pronoun.deserialize(serializedPronoun);
     }
+
+    public void close() {
+
+    }
 }

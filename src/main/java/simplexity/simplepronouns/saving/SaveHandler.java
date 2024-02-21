@@ -11,4 +11,6 @@ public abstract class SaveHandler {
 
     public abstract boolean setPronoun(OfflinePlayer player, Pronoun pronoun);
 
+    public abstract void close();
+
 }
