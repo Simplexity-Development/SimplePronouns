@@ -97,6 +97,7 @@ public class DatabaseManager extends SaveHandler {
     }
 
     public void close() {
+        if (connection == null) return;
         try {
             connection.close();
         }
