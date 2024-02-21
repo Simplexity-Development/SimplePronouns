@@ -37,7 +37,7 @@ public class PronounPlaceholders extends PlaceholderExpansion {
             case "sub" -> PronounManager.getSelectedPronoun(player).subjective();
             case "obj" -> PronounManager.getSelectedPronoun(player).objective();
             case "pos" -> PronounManager.getSelectedPronoun(player).possessive();
-            case "pos-adj" -> PronounManager.getSelectedPronoun(player).possessiveAdjective();
+            case "posadj" -> PronounManager.getSelectedPronoun(player).possessiveAdjective();
             case "ref" -> PronounManager.getSelectedPronoun(player).reflexive();
             default -> null;
         };
