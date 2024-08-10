@@ -6,6 +6,7 @@ import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import simplexity.simplepronouns.configs.ConfigLoader;
 
 public class Util {
     private static final MiniMessage miniMessage = SimplePronouns.getMiniMessage();
@@ -37,7 +38,7 @@ public class Util {
     
     public static Component parsePronouns(Player player, String string, Pronoun pronoun){
         if (pronoun == null) {
-            return miniMessage.deserialize(string);
+            pronoun = ConfigLoader.getInstance().getDefaultPronoun();
         }
         return miniMessage.deserialize(string,
                 Placeholder.unparsed("label", convertToTitleCase(pronoun.subjective()) + "/" + convertToTitleCase(pronoun.objective())),

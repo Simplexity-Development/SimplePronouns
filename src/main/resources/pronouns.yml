@@ -1,4 +1,10 @@
 pronouns:
+  default:
+    subjective: ""
+    objective: ""
+    possessive: ""
+    possessive-adj: ""
+    reflexive: ""
   he-him:
     subjective: "he"
     objective: "him"
