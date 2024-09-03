@@ -1,8 +1,6 @@
 #
 # default pronouns that will be used for anyone who has not yet set a pronoun, or who has had their pronouns cleared
-default-pronouns: "they-them"
-# should players be allowed to create custom pronouns?
-allow-custom-pronouns: false
+default-pronouns: "default"
 #available save types: PDC, MYSQL
 save-type: PDC
 mysql:

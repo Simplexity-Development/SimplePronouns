@@ -8,7 +8,6 @@ import org.jetbrains.annotations.Nullable;
 import simplexity.simplepronouns.Pronoun;
 import simplexity.simplepronouns.Util;
 import simplexity.simplepronouns.commands.subcommands.SubCommand;
-import simplexity.simplepronouns.configs.ConfigLoader;
 import simplexity.simplepronouns.configs.LocaleLoader;
 import simplexity.simplepronouns.saving.PronounManager;
 
@@ -25,10 +24,6 @@ public class CustomAdminCommand extends SubCommand {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         if (!sender.hasPermission(getPermission())) {
             sender.sendRichMessage(LocaleLoader.getInstance().getNoPermission());
-            return false;
-        }
-        if (!ConfigLoader.getInstance().allowCustomPronouns()){
-            sender.sendRichMessage(LocaleLoader.getInstance().getSyntaxError());
             return false;
         }
         if (args.length < 8) {

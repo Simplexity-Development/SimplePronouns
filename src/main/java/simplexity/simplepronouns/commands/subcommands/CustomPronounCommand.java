@@ -7,7 +7,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import simplexity.simplepronouns.Pronoun;
 import simplexity.simplepronouns.Util;
-import simplexity.simplepronouns.configs.ConfigLoader;
 import simplexity.simplepronouns.configs.LocaleLoader;
 import simplexity.simplepronouns.saving.PronounManager;
 
@@ -23,10 +22,6 @@ public class CustomPronounCommand extends SubCommand {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         if (!sender.hasPermission(getPermission())) {
             sender.sendRichMessage(LocaleLoader.getInstance().getNoPermission());
-            return false;
-        }
-        if (!ConfigLoader.getInstance().allowCustomPronouns()) {
-            sender.sendRichMessage(LocaleLoader.getInstance().getSyntaxError());
             return false;
         }
         if (!(sender instanceof Player player)) {

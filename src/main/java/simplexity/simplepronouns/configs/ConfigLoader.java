@@ -10,7 +10,6 @@ public class ConfigLoader {
     private static ConfigLoader instance;
     private String defaultPronouns;
     private Pronoun defaultPronoun;
-    private boolean customPronouns;
     private String saveType;
     private String ip;
     private String name;
@@ -28,7 +27,6 @@ public class ConfigLoader {
     public void loadConfig() {
         FileConfiguration config = SimplePronouns.getInstance().getConfig();
         defaultPronouns = config.getString("default-pronouns");
-        customPronouns = config.getBoolean("allow-custom-pronouns");
         saveType = config.getString("save-type");
         ip = config.getString("mysql.ip");
         name = config.getString("mysql.name");
@@ -50,9 +48,6 @@ public class ConfigLoader {
     
     public String getDefaultPronouns() {
         return defaultPronouns;
-    }
-    public boolean allowCustomPronouns(){
-        return customPronouns;
     }
     public String getSaveType() {
         return saveType;
