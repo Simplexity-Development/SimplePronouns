@@ -50,7 +50,11 @@ public class SetAdminCommand extends SubCommand {
                     Placeholder.unparsed("input", args[2])));
             return false;
         }
-        PronounManager.setSelectedPronoun(player, pronoun);
+        if (!PronounManager.setSelectedPronoun(player, pronoun)) {
+            sender.sendMessage(miniMessage.deserialize(LocaleLoader.getInstance().getCouldNotSet(),
+                    Placeholder.unparsed("player", args[2])));
+            return false;
+        }
         sender.sendMessage(Util.parsePronouns(player, LocaleLoader.getInstance().getPronounsAdminSet() + LocaleLoader.getInstance().getExampleSentence(),
                 pronoun));
         if (player.isOnline()) player.getPlayer().sendMessage(Util.parsePronouns(LocaleLoader.getInstance().getPronounsSet() + LocaleLoader.getInstance().getExampleSentence(), pronoun));

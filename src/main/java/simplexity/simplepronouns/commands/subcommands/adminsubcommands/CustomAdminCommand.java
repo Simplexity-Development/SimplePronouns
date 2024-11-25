@@ -1,5 +1,6 @@
 package simplexity.simplepronouns.commands.subcommands.adminsubcommands;
 
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -44,7 +45,11 @@ public class CustomAdminCommand extends SubCommand {
         String possessiveAdjective = args[6];
         String reflexive = args[7];
         Pronoun customPronoun = new Pronoun(subjective, objective, possessive, possessiveAdjective, reflexive);
-        PronounManager.setSelectedPronoun(player, customPronoun);
+        if (!PronounManager.setSelectedPronoun(player, customPronoun)) {
+            sender.sendRichMessage(LocaleLoader.getInstance().getCouldNotSet(),
+                    Placeholder.unparsed("player", args[2]));
+            return false;
+        }
         if (player.isOnline()) player.getPlayer().sendMessage(Util.parsePronouns(LocaleLoader.getInstance().getPronounsSet() + LocaleLoader.getInstance().getExampleSentence(), customPronoun));
         return true;
     }

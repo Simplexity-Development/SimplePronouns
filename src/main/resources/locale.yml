@@ -16,6 +16,7 @@ errors:
   default-pronoun: "<red>There is a configuration error and there is currently no valid default pronoun. Please fix the configuration file before using this command again.</red>"
   only-a-player: "<red>Only a player can run this command</red>"
   no-commands: "\n<gray>Someone configured the permissions incorrectly, you have access to the help command but nothing else. I, the developer of the plugin, unfortunately cannot help with that. The staff on whichever server this is probably can though. You should probably ask them to fix that.</gray>"
+  could-not-set: "\n<red>Could not set the pronouns for <player>. Saving type PDC does not support offline player pronoun setting."
 command-feedback:
   reloaded: "<gold>SimplePronouns Reloaded</gold>"
   help-header: "<white><bold>[</bold><aqua>Pronouns Help</aqua><bold>]</bold></white>"
