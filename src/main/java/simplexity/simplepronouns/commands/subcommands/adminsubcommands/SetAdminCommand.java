@@ -2,6 +2,8 @@ package simplexity.simplepronouns.commands.subcommands.adminsubcommands;
 
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -42,7 +44,7 @@ public class SetAdminCommand extends SubCommand {
                     Placeholder.unparsed("input", pronounString)));
             return false;
         }
-        Player player = Util.checkPlayer(args[2]);
+        OfflinePlayer player = Bukkit.getOfflinePlayerIfCached(args[2]);
         if (player == null) {
             sender.sendMessage(miniMessage.deserialize(LocaleLoader.getInstance().getInvalidPlayer(),
                     Placeholder.unparsed("input", args[2])));
@@ -51,7 +53,7 @@ public class SetAdminCommand extends SubCommand {
         PronounManager.setSelectedPronoun(player, pronoun);
         sender.sendMessage(Util.parsePronouns(player, LocaleLoader.getInstance().getPronounsAdminSet() + LocaleLoader.getInstance().getExampleSentence(),
                 pronoun));
-        player.sendMessage(Util.parsePronouns(LocaleLoader.getInstance().getPronounsSet() + LocaleLoader.getInstance().getExampleSentence(), pronoun));
+        if (player.isOnline()) player.getPlayer().sendMessage(Util.parsePronouns(LocaleLoader.getInstance().getPronounsSet() + LocaleLoader.getInstance().getExampleSentence(), pronoun));
         return true;
     }
     

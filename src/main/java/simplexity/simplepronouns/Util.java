@@ -6,6 +6,7 @@ import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 import simplexity.simplepronouns.configs.ConfigLoader;
 
 public class Util {
@@ -36,10 +37,11 @@ public class Util {
                 Placeholder.unparsed("ref", convertToTitleCase(pronoun.reflexive())));
     }
     
-    public static Component parsePronouns(Player player, String string, Pronoun pronoun){
-        if (pronoun == null) {
+    public static Component parsePronouns(@NotNull OfflinePlayer player, String string, Pronoun pronoun){
+        if (pronoun == null || player.getName() == null) {
             pronoun = ConfigLoader.getInstance().getDefaultPronoun();
         }
+        assert player.getName() != null;
         return miniMessage.deserialize(string,
                 Placeholder.unparsed("label", convertToTitleCase(pronoun.subjective()) + "/" + convertToTitleCase(pronoun.objective())),
                 Placeholder.unparsed("sub", convertToTitleCase(pronoun.subjective())),
@@ -47,16 +49,7 @@ public class Util {
                 Placeholder.unparsed("pos", convertToTitleCase(pronoun.possessive())),
                 Placeholder.unparsed("posadj", convertToTitleCase(pronoun.possessiveAdjective())),
                 Placeholder.unparsed("ref", convertToTitleCase(pronoun.reflexive())),
-                Placeholder.component("name", player.displayName()));
-    }
-    
-    public static Player checkPlayer(String string){
-        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(string);
-        if (offlinePlayer instanceof Player player) {
-            return player;
-        } else {
-            return null;
-        }
+                Placeholder.unparsed("name", player.getName()));
     }
     
     public static String convertToTitleCase(String input) {

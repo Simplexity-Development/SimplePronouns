@@ -2,6 +2,8 @@ package simplexity.simplepronouns.commands.subcommands;
 
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -47,7 +49,7 @@ public class GetCommand extends SubCommand {
     
     private boolean getOtherPronouns(CommandSender sender, String[] args) {
         String playerString = args[1];
-        Player player = Util.checkPlayer(playerString);
+        OfflinePlayer player = Bukkit.getOfflinePlayerIfCached(playerString);
         if (player == null) {
             sender.sendMessage(miniMessage.deserialize(LocaleLoader.getInstance().getInvalidPlayer(),
                     Placeholder.unparsed("input", playerString)));
