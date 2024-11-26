@@ -19,6 +19,7 @@ import simplexity.simplepronouns.configs.ConfigLoader;
 import simplexity.simplepronouns.configs.LocaleLoader;
 import simplexity.simplepronouns.configs.PronounLoader;
 import simplexity.simplepronouns.dependencies.PronounPlaceholders;
+import simplexity.simplepronouns.listener.PronounTransferListener;
 
 import java.util.HashMap;
 
@@ -39,6 +40,7 @@ public final class SimplePronouns extends JavaPlugin {
         LocaleLoader.getInstance().loadLocale();
         this.getCommand("pronouns").setExecutor(new PronounCommand());
         this.getCommand("SPReload").setExecutor(new SPReload());
+        this.getServer().getPluginManager().registerEvents(new PronounTransferListener(), this);
         if (this.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
             new PronounPlaceholders().register();
         } else {

@@ -31,3 +31,5 @@ command-feedback:
   list-header: "<aqua>The current configured pronouns are:</aqua>"
   list-item: "\n<hover:show_text:'<bold>[</bold><green><label></green><bold>]</bold>\n - Subjective: <yellow><u><sub></u></yellow>\n - Objective <yellow><u><obj></u></yellow>\n - Possessive: <yellow><u><pos></u></yellow>\n - Possessive-Adjective: <yellow><u><posadj></u></yellow>\n - Reflexive: <yellow><u><ref></u></yellow>'> - <bold>[</bold><green><label></green><bold>]</bold></hover>"
   user-pronouns: "<gold><name>'s current pronouns are:</gold>"
+logger:
+  transfer-pdc: "Transferred PDC pronoun data to current saving type for <player>."

@@ -20,6 +20,7 @@ public class LocaleLoader {
     private String noPermission, syntaxError, notEnoughArguments, notConfigured, invalidPlayer, defaultPronoun, onlyAPlayer, noCommands, couldNotSet;
     private String commandReloaded, helpHeader, listHelp, setHelp, getHelp, clearHelp, customHelp, adminSetHelp, adminClearHelp, adminCustomHelp,
             listHeader, listItem, userPronouns;
+    private String transferPdc;
     
     private LocaleLoader() {
         if (!localeFile.exists()) {
@@ -72,7 +73,7 @@ public class LocaleLoader {
         listHeader = localeConfig.getString("command-feedback.list-header", "<aqua>The current configured pronouns are:</aqua>");
         listItem = localeConfig.getString("command-feedback.list-item", "\n<hover:show_text:'<bold>[</bold><green><label></green><bold>]</bold>\n - Subjective: <yellow><u><sub></u></yellow>\n - Objective <yellow><u><obj></u></yellow>\n - Possessive: <yellow><u><pos></u></yellow>\n - Possessive-Adjective: <yellow><u><posadj></u></yellow>\n - Reflexive: <yellow><u><ref></u></yellow>'> - <bold>[</bold><green><label></green><bold>]</bold></hover>");
         userPronouns = localeConfig.getString("command-feedback.user-pronouns", "<gold><name>'s current pronouns are:</gold>");
-        
+        transferPdc = localeConfig.getString("logger.transfer-pdc", "Transferred PDC pronoun data to current saving type for <player>.");
     }
     
     public String getPronounsSet() {
@@ -188,5 +189,9 @@ public class LocaleLoader {
 
     public String getCustomHelp() {
         return customHelp;
+    }
+
+    public String getTransferPdc() {
+        return transferPdc;
     }
 }
