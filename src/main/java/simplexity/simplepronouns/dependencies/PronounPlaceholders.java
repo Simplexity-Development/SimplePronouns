@@ -12,7 +12,7 @@ public class PronounPlaceholders extends PlaceholderExpansion {
     
     @Override
     public @NotNull String getIdentifier() {
-        return "sp";
+        return "pronoun";
     }
     
     @Override
@@ -22,7 +22,7 @@ public class PronounPlaceholders extends PlaceholderExpansion {
     
     @Override
     public @NotNull String getVersion() {
-        return "1.0.0";
+        return "2.0.0";
     }
     
     @Override
@@ -37,7 +37,7 @@ public class PronounPlaceholders extends PlaceholderExpansion {
             case "sub" -> PronounManager.getSelectedPronoun(player).subjective();
             case "obj" -> PronounManager.getSelectedPronoun(player).objective();
             case "pos" -> PronounManager.getSelectedPronoun(player).possessive();
-            case "posadj" -> PronounManager.getSelectedPronoun(player).possessiveAdjective();
+            case "pos_adj" -> PronounManager.getSelectedPronoun(player).possessiveAdjective();
             case "ref" -> PronounManager.getSelectedPronoun(player).reflexive();
             default -> null;
         };
