@@ -12,7 +12,7 @@ public class PronounPlaceholders extends PlaceholderExpansion {
     
     @Override
     public @NotNull String getIdentifier() {
-        return "sp";
+        return "pronoun";
     }
     
     @Override
@@ -22,7 +22,7 @@ public class PronounPlaceholders extends PlaceholderExpansion {
     
     @Override
     public @NotNull String getVersion() {
-        return "1.0.0";
+        return "2.0.0";
     }
     
     @Override
@@ -34,11 +34,11 @@ public class PronounPlaceholders extends PlaceholderExpansion {
     public String onRequest(OfflinePlayer player, @NotNull String params) {
         String[] paramList = params.split("-");
         String pronoun = switch (paramList[0]) {
-            case "sub" -> PronounManager.getSelectedPronoun(player).subjective();
-            case "obj" -> PronounManager.getSelectedPronoun(player).objective();
-            case "pos" -> PronounManager.getSelectedPronoun(player).possessive();
-            case "posadj" -> PronounManager.getSelectedPronoun(player).possessiveAdjective();
-            case "ref" -> PronounManager.getSelectedPronoun(player).reflexive();
+            case "subjective" -> PronounManager.getSelectedPronoun(player).subjective();
+            case "objective" -> PronounManager.getSelectedPronoun(player).objective();
+            case "possessive" -> PronounManager.getSelectedPronoun(player).possessive();
+            case "possessive-adjective" -> PronounManager.getSelectedPronoun(player).possessiveAdjective();
+            case "reflexive" -> PronounManager.getSelectedPronoun(player).reflexive();
             default -> null;
         };
         if (pronoun == null) return null;
