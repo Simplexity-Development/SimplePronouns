@@ -7,7 +7,13 @@ import simplexity.simplepronouns.Pronoun;
 import simplexity.simplepronouns.SimplePronouns;
 import simplexity.simplepronouns.configs.ConfigLoader;
 
-import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Logger;
 
 public class DatabaseManager extends SaveHandler {
@@ -71,11 +77,11 @@ public class DatabaseManager extends SaveHandler {
                 "VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sqlStatement)) {
             statement.setString(1, player.getUniqueId().toString());
-            statement.setString(2, pronoun.subjective());
-            statement.setString(3, pronoun.objective());
-            statement.setString(4, pronoun.possessive());
-            statement.setString(5, pronoun.possessiveAdjective());
-            statement.setString(6, pronoun.reflexive());
+            statement.setString(2, pronoun.getSubjective());
+            statement.setString(3, pronoun.getObjective());
+            statement.setString(4, pronoun.getPossessive());
+            statement.setString(5, pronoun.getPossessiveAdjective());
+            statement.setString(6, pronoun.getReflexive());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

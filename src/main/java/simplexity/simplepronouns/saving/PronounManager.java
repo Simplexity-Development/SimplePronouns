@@ -1,7 +1,6 @@
 package simplexity.simplepronouns.saving;
 
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 import simplexity.simplepronouns.Pronoun;
 import simplexity.simplepronouns.configs.ConfigLoader;
 import simplexity.simplepronouns.configs.PronounLoader;
@@ -16,7 +15,8 @@ public class PronounManager {
     
     public static Pronoun getSelectedPronoun(OfflinePlayer player) {
         Pronoun pronoun = saveHandler.getPronoun(player);
-        return (pronoun != null) ? pronoun : PronounLoader.pronouns.get(ConfigLoader.getInstance().getDefaultPronouns());
+        if (pronoun == null) return ConfigLoader.getInstance().getDefaultPronoun();
+        return pronoun;
     }
     
     public static Pronoun getPronounFromString(String string) {
@@ -26,7 +26,6 @@ public class PronounManager {
     public static void loadSaveHandler() {
         if (saveHandler != null) saveHandler.close();
         switch (ConfigLoader.getInstance().getSaveType()) {
-            // case "yml" -> saveHandler = new YML(); TODO: Not Yet Implemented
             case "mysql" -> saveHandler = new DatabaseManager();
             default -> saveHandler = new PlayerPDC();
         }

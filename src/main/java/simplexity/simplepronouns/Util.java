@@ -3,9 +3,7 @@ package simplexity.simplepronouns;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
-import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import simplexity.simplepronouns.configs.ConfigLoader;
 
@@ -29,12 +27,12 @@ public class Util {
             return miniMessage.deserialize(string);
         }
         return miniMessage.deserialize(string,
-                Placeholder.unparsed("label", convertToTitleCase(pronoun.subjective()) + "/" + convertToTitleCase(pronoun.objective())),
-                Placeholder.unparsed("sub", convertToTitleCase(pronoun.subjective())),
-                Placeholder.unparsed("obj", convertToTitleCase(pronoun.objective())),
-                Placeholder.unparsed("pos", convertToTitleCase(pronoun.possessive())),
-                Placeholder.unparsed("posadj", convertToTitleCase(pronoun.possessiveAdjective())),
-                Placeholder.unparsed("ref", convertToTitleCase(pronoun.reflexive())));
+                Placeholder.unparsed("label", convertToTitleCase(pronoun.getSubjective()) + "/" + convertToTitleCase(pronoun.getObjective())),
+                Placeholder.unparsed("sub", convertToTitleCase(pronoun.getSubjective())),
+                Placeholder.unparsed("obj", convertToTitleCase(pronoun.getObjective())),
+                Placeholder.unparsed("pos", convertToTitleCase(pronoun.getPossessive())),
+                Placeholder.unparsed("posadj", convertToTitleCase(pronoun.getPossessiveAdjective())),
+                Placeholder.unparsed("ref", convertToTitleCase(pronoun.getReflexive())));
     }
     
     public static Component parsePronouns(@NotNull OfflinePlayer player, String string, Pronoun pronoun){
@@ -43,12 +41,12 @@ public class Util {
         }
         assert player.getName() != null;
         return miniMessage.deserialize(string,
-                Placeholder.unparsed("label", convertToTitleCase(pronoun.subjective()) + "/" + convertToTitleCase(pronoun.objective())),
-                Placeholder.unparsed("sub", convertToTitleCase(pronoun.subjective())),
-                Placeholder.unparsed("obj", convertToTitleCase(pronoun.objective())),
-                Placeholder.unparsed("pos", convertToTitleCase(pronoun.possessive())),
-                Placeholder.unparsed("posadj", convertToTitleCase(pronoun.possessiveAdjective())),
-                Placeholder.unparsed("ref", convertToTitleCase(pronoun.reflexive())),
+                Placeholder.unparsed("label", convertToTitleCase(pronoun.getSubjective()) + "/" + convertToTitleCase(pronoun.getObjective())),
+                Placeholder.unparsed("sub", convertToTitleCase(pronoun.getSubjective())),
+                Placeholder.unparsed("obj", convertToTitleCase(pronoun.getObjective())),
+                Placeholder.unparsed("pos", convertToTitleCase(pronoun.getPossessive())),
+                Placeholder.unparsed("posadj", convertToTitleCase(pronoun.getPossessiveAdjective())),
+                Placeholder.unparsed("ref", convertToTitleCase(pronoun.getReflexive())),
                 Placeholder.unparsed("name", player.getName()));
     }
     
