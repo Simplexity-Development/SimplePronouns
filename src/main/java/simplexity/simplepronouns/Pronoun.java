@@ -4,11 +4,11 @@ import org.jetbrains.annotations.NotNull;
 
 public final class Pronoun {
 
-    private final String subjective;
-    private final String objective;
-    private final String possessive;
-    private final String possessiveAdjective;
-    private final String reflexive;
+    private String subjective = "";
+    private String objective = "";
+    private String possessive = "";
+    private String possessiveAdjective = "";
+    private String reflexive = "";
 
     public Pronoun(String subjective, String objective, String possessive, String possessiveAdjective,
                    String reflexive) {
@@ -30,15 +30,18 @@ public final class Pronoun {
     }
 
     public static String serialize(@NotNull Pronoun pronoun) {
-        return String.format("%s///%s///%s///%s///%s",
-                pronoun.subjective, pronoun.objective, pronoun.possessive,
-                pronoun.possessiveAdjective, pronoun.reflexive);
+        return String.join("///",
+                pronoun.subjective.isEmpty() ? " " : pronoun.subjective,
+                pronoun.objective.isEmpty() ? " " : pronoun.objective,
+                pronoun.possessive.isEmpty() ? " " : pronoun.possessive,
+                pronoun.possessiveAdjective.isEmpty() ? " " : pronoun.possessiveAdjective,
+                pronoun.reflexive.isEmpty() ? " " : pronoun.reflexive);
     }
 
     public static Pronoun deserialize(@NotNull String string) {
-        String[] arr = string.split("///");
+        String[] arr = string.split("///", -1); // Ensure split keeps empty fields
         if (arr.length != 5) return null;
-        return new Pronoun(arr[0], arr[1], arr[2], arr[3], arr[4]);
+        return new Pronoun(arr[0].trim(), arr[1].trim(), arr[2].trim(), arr[3].trim(), arr[4].trim());
     }
 
     public String getObjective() {
