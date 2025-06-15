@@ -6,30 +6,30 @@ import org.jetbrains.annotations.NotNull;
 import simplexity.simplepronouns.saving.PronounManager;
 
 public class PronounPlaceholders extends PlaceholderExpansion {
-    
+
     public PronounPlaceholders() {
     }
-    
+
     @Override
     public @NotNull String getIdentifier() {
         return "pronoun";
     }
-    
+
     @Override
     public @NotNull String getAuthor() {
         return "simplexity";
     }
-    
+
     @Override
     public @NotNull String getVersion() {
         return "2.0.0";
     }
-    
+
     @Override
     public boolean persist() {
         return true;
     }
-    
+
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
         String[] paramList = params.split("-");
@@ -85,8 +85,9 @@ public class PronounPlaceholders extends PlaceholderExpansion {
         }
         return pronoun;
     }
-    
+
     private String capitalizeString(String string) {
+        if (string == null || string.isEmpty()) return string;
         String firstLetter = string.substring(0, 1);
         return firstLetter.toUpperCase() + string.substring(1);
     }
